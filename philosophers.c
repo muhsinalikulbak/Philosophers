@@ -6,39 +6,38 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/04/25 02:53:04 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/05 01:23:10 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int counter = 0;
-
-void* print_hello(void* arg) 
-{
-    pthread_mutex_t *lock = (pthread_mutex_t *)arg;
-
-    pthread_mutex_lock(lock);
-    
-    for (int i = 0; i < 5555; i++) 
-    {
-        counter++;
-    }
-    pthread_mutex_unlock(lock);
-    return NULL;
-}
-
 int main() 
 {
-    pthread_t t1, t2;
-    pthread_mutex_t my_mutex = PTHREAD_MUTEX_INITIALIZER;
+    struct timeval start;
+    struct timeval stop;
+    long milisecond;
 
-    pthread_create(&t1, NULL, print_hello, &my_mutex);
-    pthread_create(&t2, NULL, print_hello,  &my_mutex);
+    gettimeofday(&start, NULL);
+    for (int i = 0; i < 3000000; i++)
+    {
+        printf("\n");
+    }
+    gettimeofday(&stop, NULL);
 
-    pthread_join(t1, NULL);
-    pthread_join(t2, NULL);
+    milisecond = (stop.tv_sec*1000 + stop.tv_usec / 1000) - (start.tv_sec*1000 + start.tv_usec / 1000);
+    printf("3 Milyon for işlemi için Geçen toplam milisaniye : %ld\n", milisecond);
+    usleep(3000000);
+    int j = 0;    
+    gettimeofday(&start, NULL);
+    while (j < 3000000)
+    {
+        printf("\n");
+        j++;
+    }
+    gettimeofday(&stop, NULL);
+
+    milisecond = (stop.tv_sec*1000 + stop.tv_usec / 1000) - (start.tv_sec*1000 + start.tv_usec / 1000);
+    printf("3 Milyon while işlemi için Geçen toplam milisaniye : %ld\n", milisecond);
     
-    printf("counter : %d\n", counter);
-    return 0;
 }
