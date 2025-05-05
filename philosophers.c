@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/06 01:16:53 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/06 01:17:54 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int main()
 {
     pthread_t thread;
     pthread_create(&thread, NULL, print, NULL);
+    pthread_join(thread, NULL);
     printf("Burası main thread\n");
 }
