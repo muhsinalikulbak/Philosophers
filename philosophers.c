@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/06 01:17:54 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/06 01:23:29 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 void *print(void *arg)
 {
     printf("Merhaba ben Thread\n");
-    return NULL;
+    int *num = malloc(sizeof(int)*1);
+    *num = 185;
+    return (void*)(num);
 }
 int main() 
 {
     pthread_t thread;
+    void *return_value;
+
     pthread_create(&thread, NULL, print, NULL);
-    pthread_join(thread, NULL);
-    printf("Burası main thread\n");
+    pthread_join(thread, &return_value);
+    printf("Gelen değer : %d\n", *(int*)return_value);
 }
