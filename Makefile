@@ -1,6 +1,6 @@
 NAME = philosophers
 
-SRCS =	 
+SRCS =	 philosophers.c
 
 OBJS = $(SRCS:.c=.o)
 

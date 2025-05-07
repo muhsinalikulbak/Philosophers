@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/07 21:37:50 by mkulbak          ###   ########.fr       */
+/*   Created: 2025/05/07 20:59:24 by mkulbak           #+#    #+#             */
+/*   Updated: 2025/05/07 21:03:41 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	write_colored(char *color, char *text)
+bool ft_is_digit(char ch)
 {
-	write(1, color, ft_strlen(color));
-	write(1, text, ft_strlen(text));
-	write(1, RESET, ft_strlen(RESET));
+	return (ch >= '0' && ch <= '9');
 }
 
-int main(int argc, char **argv) 
+int	ft_strlen(char *str)
 {
-	if (!argv_checker(argc, argv))
-	{
-		write_colored(RED, "\nInvalid Argument !");
-		return (EXIT_FAILURE);
-	}
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }
