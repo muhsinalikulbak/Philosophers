@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 01:42:13 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/08 01:42:29 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/08 16:43:52 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ long	ft_atol(const char *str)
 	res = 0;
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	while (str[i] == '0')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{

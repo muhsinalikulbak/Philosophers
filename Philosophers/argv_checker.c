@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/08 03:35:10 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/08 16:46:17 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	overflow_check(char *str)
 		return (false);
 	return (true);
 }
-
+	
 static bool	digit_check(char *str)
 {
 	int	plus;
@@ -73,6 +73,3 @@ bool	argv_checker(int argc, char **argv)
 	}
 	return (true);
 }
-
-// number_of_philosophers, time_to_die,  time_to_eat, time_to_sleep
-// [number_of_times_each_philosopher_must_eat]
