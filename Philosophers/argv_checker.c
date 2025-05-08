@@ -6,11 +6,12 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/08 03:23:47 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/08 03:35:10 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+#include <limits.h>
 
 static bool	overflow_check(char *str)
 {
@@ -56,6 +57,7 @@ bool	argv_checker(int argc, char **argv)
 {
 	int		i;
 	char	*str_num;
+	bool	check;
 
 	if (argc < 5 || argc > 6)
 		return (false);
@@ -63,12 +65,10 @@ bool	argv_checker(int argc, char **argv)
 	while (i < argc)
 	{
 		str_num = ft_strtrim(argv[i], " ");
-		if (!digit_check(str_num) || !overflow_check(str_num))
-		{
-			free(str_num);
-			return (false);
-		}
+		check = !digit_check(str_num) || !overflow_check(str_num);
 		free(str_num);
+		if (check)
+			return (false);
 		i++;
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/08 01:55:53 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/08 03:31:24 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 # include <pthread.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include <string.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include <limits.h>
 # include "../libft/libft.h"
 
 # define RESET   "\033[0m"
