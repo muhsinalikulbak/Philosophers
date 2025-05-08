@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/07 21:37:50 by mkulbak          ###   ########.fr       */
+/*   Created: 2024/10/14 21:16:26 by mkulbak           #+#    #+#             */
+/*   Updated: 2025/05/08 02:37:45 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "libft.h"
 
-static void	write_colored(char *color, char *text)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	write(1, color, ft_strlen(color));
-	write(1, text, ft_strlen(text));
-	write(1, RESET, ft_strlen(RESET));
-}
+	size_t	i;
 
-int main(int argc, char **argv) 
-{
-	if (!argv_checker(argc, argv))
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (i < n && (s1[i] || s2[i]))
 	{
-		write_colored(RED, "\nInvalid Argument !");
-		return (EXIT_FAILURE);
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
+	return (0);
 }

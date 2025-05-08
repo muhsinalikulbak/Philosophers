@@ -6,70 +6,72 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/07 21:43:48 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/08 03:23:47 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long	ft_atol(const char *str)
+static bool	overflow_check(char *str)
 {
 	int		i;
-	long	res;
-	int		sign;
+	long	num;
 
-	sign = 1;
-	res = 0;
 	i = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ' || str[i] == '0')
+	while (str[i] == '0')
 		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (ft_isdigit(str[i]))
-	{
-		res *= 10;
-		res += str[i] - '0';
-		i++;
-	}
-	return (res * sign);
+	if (ft_strlen(str + i) > 10)
+		return (false);
+	num = ft_atol(str);
+	if (num > INT_MAX || num < INT_MIN)
+		return (false);
+	return (true);
 }
 
 static bool	digit_check(char *str)
 {
 	int	plus;
-	int	len;
 	int	i;
 
-	len = ft_strlen(str);
+	if (ft_strlen(str) == 1 && str[0] == '0')
+		return (false);
 	i = 0;
+	plus = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
 		i++;
-	while (i < len)
+	while (str[i] != '\0')
 	{
 		if (str[i] == '+')
 			plus++;
-		else if (str[i] == '-' || !ft_is_digit(str[i]))
+		else if (str[i] == '-' || !ft_isdigit(str[i]))
 			return (false);
 		i++;
 	}
+	if ((plus == 1 && str[0] == '+') || plus == 0)
+		return (true);
+	return (false);
 }
 
 bool	argv_checker(int argc, char **argv)
 {
-	int	i;
+	int		i;
+	char	*str_num;
 
-	if (argc < 4 || argc > 5)
+	if (argc < 5 || argc > 6)
 		return (false);
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
-		if (!digit_check(argv[i]))
+		str_num = ft_strtrim(argv[i], " ");
+		if (!digit_check(str_num) || !overflow_check(str_num))
+		{
+			free(str_num);
 			return (false);
+		}
+		free(str_num);
+		i++;
 	}
+	return (true);
 }
 
 // number_of_philosophers, time_to_die,  time_to_eat, time_to_sleep
