@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/10 12:59:31 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/10 16:08:49 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ typedef struct s_philosopher
 }				t_philosopher;
 
 bool	argv_checker(int argc, char **argv);
-
+long	get_current_time();
 
 #endif
