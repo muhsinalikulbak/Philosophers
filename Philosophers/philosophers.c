@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/10 03:29:44 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/10 12:58:55 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,16 @@ static void	write_colored(char *color, char *text)
 
 static void	exit(char *message)
 {
-	write_colored(GREEN, "\n----");
+	write_colored(GREEN, "\n---- ");
 	write_colored(RED, message);
-	write_colored(GREEN, "----\n");
+	write_colored(GREEN, " ----\n");
 	return (EXIT_FAILURE);
 }
 
 int main(int argc, char **argv) 
 {
 	if (!argv_checker(argc, argv))
-		exit(" Invalid Argument! ");
+		exit("Invalid Argument!");
 	
 	
 }
