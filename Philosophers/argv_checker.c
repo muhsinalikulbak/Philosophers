@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/10 15:50:30 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 02:50:14 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	overflow_check(char *str)
 		return (false);
 	return (true);
 }
-	
+
 static bool	digit_check(char *str)
 {
 	int	plus;

@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 02:36:38 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 02:49:45 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ static void	init_params(t_params *params, int argc, char **argv)
 	params->sim_end = false;
 }
 
-static void	init_philo(t_philosophers *philos, t_params *params, pthread_mutex_t *forks)
+static void	init_philo(
+	t_philo *philos, t_params *params, pthread_mutex_t *forks)
 {
-	int				i;
+	int	i;
 
 	i = 0;
 	while (i < params->philo_count)
@@ -39,14 +40,14 @@ static void	init_philo(t_philosophers *philos, t_params *params, pthread_mutex_t
 		philos[i].meals_eaten = 0;
 		philos[i].params = params;
 		philos[i].left_fork = &forks[i];
-		philos[i].right_fork = &forks[(i+1) % params->philo_count];
+		philos[i].right_fork = &forks[(i + 1) % params->philo_count];
 		philos[i].meal_mutex = malloc(sizeof(pthread_mutex_t));
 		pthread_mutex_init(philos[i].meal_mutex, NULL);
 		i++;
 	}
 }
 
-static pthread_mutex_t *init_mutex(int philo_count)
+static pthread_mutex_t	*init_mutex(int philo_count)
 {
 	pthread_mutex_t	*forks;
 	int				i;
@@ -61,7 +62,7 @@ static pthread_mutex_t *init_mutex(int philo_count)
 	return (forks);
 }
 
-void	initializer(t_params *params, t_philosophers *philos, int argc, char **argv)
+void	initializer(t_params *params, t_philo *philos, int argc, char **argv)
 {
 	init_params(params, argc, argv);
 	init_philo(philos, params, init_mutex(params->philo_count));

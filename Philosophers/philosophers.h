@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 02:21:40 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 02:44:29 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ typedef struct s_params
 {
 	pthread_mutex_t	*print_mutex;
 	int				philo_count;
-	int 			time_to_die;
-	int 			time_to_eat;
-	int 			time_to_sleep;
-	int 			must_eat;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
 	bool			sim_end;
 }				t_params;
 
-typedef struct s_philosopher
+typedef struct s_philo
 {
 	pthread_t		thread;
 	pthread_mutex_t	*meal_mutex;
@@ -47,10 +47,9 @@ typedef struct s_philosopher
 	int				id;
 	int				last_meal_time;
 	int				meals_eaten;
-}               t_philosophers;
+}			t_philo;
 
-
+void	initializer(t_params *params, t_philo *philos, int argc, char **argv);
 bool	argv_checker(int argc, char **argv);
-long	get_current_time();
-void	initializer(t_params *params, t_philosophers *philos, int argc, char **argv);
+long	get_current_time(void);
 #endif

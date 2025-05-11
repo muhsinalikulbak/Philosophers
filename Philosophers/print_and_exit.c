@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   print_and_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:59:24 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 02:50:08 by mkulbak          ###   ########.fr       */
+/*   Created: 2025/05/12 02:46:04 by mkulbak           #+#    #+#             */
+/*   Updated: 2025/05/12 02:47:07 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-long	get_current_time(void)
-{
-	struct timeval	time;
-	long			ms;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
+// Buradaki fonksiyon hata kodu alıcak
+// Hata koduna göre çıktıyı yazıcak, kaynakları serbest bırakıp çıkıcak.
