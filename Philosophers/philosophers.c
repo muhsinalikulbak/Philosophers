@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/11 19:53:51 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 02:04:52 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ static void	exit(char *message)
 	return (EXIT_FAILURE);
 }
 
-int main(int argc, char **argv) 
+int	main(int argc, char **argv)
 {
+	t_params		*params;
+	t_philosophers	*philos;
+
 	if (!argv_checker(argc, argv))
 		exit("Invalid Argument!");
-	
+	philos = malloc(sizeof(t_philosophers) * ft_atoi(argv[1]));
+	initializer(&params, philos, argc, argv);
 }

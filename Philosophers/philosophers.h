@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/11 19:44:25 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 02:21:40 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,23 @@
 # define GREEN   "\033[32m"
 # define BLUE    "\033[34m"
 
-typedef struct s_forks
-{
-	pthread_mutex_t mutex;
-	int mutex_id;
-}               t_forks;
-
 typedef struct s_params
 {
-	int	philo_count;
-	int time_to_die;
-	int time_to_eat;
-	int time_to_sleep;
-	int must_eat;
+	pthread_mutex_t	*print_mutex;
+	int				philo_count;
+	int 			time_to_die;
+	int 			time_to_eat;
+	int 			time_to_sleep;
+	int 			must_eat;
+	bool			sim_end;
 }				t_params;
 
 typedef struct s_philosopher
 {
 	pthread_t		thread;
-	pthread_mutex_t meal_mutex;
-	t_forks			*left_fork;
-	t_forks			*right_fork;
+	pthread_mutex_t	*meal_mutex;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	t_params		*params;
 	int				id;
 	int				last_meal_time;
@@ -56,5 +52,5 @@ typedef struct s_philosopher
 
 bool	argv_checker(int argc, char **argv);
 long	get_current_time();
-
+void	initializer(t_params *params, t_philosophers *philos, int argc, char **argv);
 #endif
