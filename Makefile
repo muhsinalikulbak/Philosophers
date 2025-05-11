@@ -6,7 +6,7 @@
 #    By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 01:36:07 by mkulbak           #+#    #+#              #
-#    Updated: 2025/05/08 03:08:49 by mkulbak          ###   ########.fr        #
+#    Updated: 2025/05/11 19:33:25 by mkulbak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRCS = $(SRC_DIR)/philosophers.c \
        $(SRC_DIR)/argv_checker.c \
        $(SRC_DIR)/utils.c \
+       $(SRC_DIR)/initializer.c \
 
 
 OBJS = $(SRCS:.c=.o)
