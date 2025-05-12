@@ -6,19 +6,24 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 02:49:45 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 20:53:11 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	init_params(t_params *params, int argc, char **argv)
+
+// sim_end ve sim_start olucak mı olucaksa neden gerek var
+
+static bool	init_params(t_params *params, int argc, char **argv)
 {
 	params->philo_count = ft_atoi(argv[1]);
 	params->time_to_die = ft_atoi(argv[2]);
 	params->time_to_eat = ft_atoi(argv[3]);
 	params->time_to_sleep = ft_atoi(argv[4]);
 	params->print_mutex = malloc(sizeof(pthread_mutex_t));
+	if (params->print_mutex == NULL)
+		return (false);
 	pthread_mutex_init(params->print_mutex, NULL);
 	if (argc == 6)
 		params->must_eat = ft_atoi(argv[5]);
@@ -27,7 +32,7 @@ static void	init_params(t_params *params, int argc, char **argv)
 	params->sim_end = false;
 }
 
-static void	init_philo(
+static bool	init_philo(
 	t_philo *philos, t_params *params, pthread_mutex_t *forks)
 {
 	int	i;
@@ -42,6 +47,8 @@ static void	init_philo(
 		philos[i].left_fork = &forks[i];
 		philos[i].right_fork = &forks[(i + 1) % params->philo_count];
 		philos[i].meal_mutex = malloc(sizeof(pthread_mutex_t));
+		if (philos[i].meal_mutex == NULL)
+			return (false);
 		pthread_mutex_init(philos[i].meal_mutex, NULL);
 		i++;
 	}
@@ -54,6 +61,8 @@ static pthread_mutex_t	*init_mutex(int philo_count)
 
 	i = 0;
 	forks = malloc(sizeof(pthread_mutex_t) * philo_count);
+	if (forks == NULL)
+		return (NULL);
 	while (i < philo_count)
 	{
 		pthread_mutex_init(&forks[i], NULL);
@@ -62,8 +71,16 @@ static pthread_mutex_t	*init_mutex(int philo_count)
 	return (forks);
 }
 
-void	initializer(t_params *params, t_philo *philos, int argc, char **argv)
+bool	initializer(t_params *params, t_philo *philos, int argc, char **argv)
 {
-	init_params(params, argc, argv);
-	init_philo(philos, params, init_mutex(params->philo_count));
+	pthread_mutex_t *forks;
+
+	if (!init_params(params, argc, argv))
+		return (error_manage(EMALLOC, NULL, philos, false));
+	forks = init_mutex(params->philo_count);
+	if (forks == NULL)
+		return (error_manage(EMALLOC, params, philos, false));
+	if (!init_philo(philos, params, forks))
+		return (error_manage(EMALLOC, params, philos, true));
+	
 }

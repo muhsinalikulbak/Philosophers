@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 02:44:29 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 21:10:25 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include "../libft/libft.h"
+
+# define EINVAL 10
+# define EMALLOC 11
 
 # define RESET   "\033[0m"
 # define RED     "\033[31m"
@@ -49,7 +52,10 @@ typedef struct s_philo
 	int				meals_eaten;
 }			t_philo;
 
-void	initializer(t_params *params, t_philo *philos, int argc, char **argv);
-bool	argv_checker(int argc, char **argv);
 long	get_current_time(void);
+void	ft_perror(char *message);
+bool	argv_checker(int argc, char **argv);
+void	free_resources(t_params *params, t_philo *philos, bool is_init_philo);
+bool	initializer(t_params *params, t_philo *philos, int argc, char **argv);
+int		error_manage(int error_code, t_params *param, t_philo *phi, bool init);
 #endif
