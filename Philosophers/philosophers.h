@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 21:10:25 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 21:54:32 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef struct s_params
 {
 	pthread_mutex_t	*print_mutex;
+	pthread_mutex_t	*forks;
 	int				philo_count;
 	int				time_to_die;
 	int				time_to_eat;

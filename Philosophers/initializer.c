@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 20:53:11 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 21:55:52 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	else
 		params->must_eat = -1;
 	params->sim_end = false;
+	return (true);
 }
 
 static bool	init_philo(
@@ -52,6 +53,7 @@ static bool	init_philo(
 		pthread_mutex_init(philos[i].meal_mutex, NULL);
 		i++;
 	}
+	return (true);
 }
 
 static pthread_mutex_t	*init_mutex(int philo_count)
@@ -80,7 +82,8 @@ bool	initializer(t_params *params, t_philo *philos, int argc, char **argv)
 	forks = init_mutex(params->philo_count);
 	if (forks == NULL)
 		return (error_manage(EMALLOC, params, philos, false));
+	params->forks = forks;
 	if (!init_philo(philos, params, forks))
 		return (error_manage(EMALLOC, params, philos, true));
-	
+	return (true);
 }
