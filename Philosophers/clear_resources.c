@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:54 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 22:20:37 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 23:48:19 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_resources(t_params *params, t_philo *philos, bool is_init_philo)
 	int	i;
 
 	i = -1;
-	if (params != NULL)
+	if (params != NULL && params->print_mutex != NULL)
 	{
 		pthread_mutex_destroy(params->print_mutex);
 		free(params->print_mutex);
@@ -35,6 +35,6 @@ void	free_resources(t_params *params, t_philo *philos, bool is_init_philo)
 		}
 		free(philos);
 	}
-	if (params->forks != NULL)
+	if (params != NULL && params->forks != NULL)
 		free(params->forks);
 }
