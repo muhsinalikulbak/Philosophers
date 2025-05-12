@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:54 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 21:57:46 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 22:15:25 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	free_resources(t_params *params, t_philo *philos, bool is_init_philo)
 			}
 			pthread_mutex_destroy(philos[i].left_fork);
 		}
+		free(philos);
 	}
-	free(params->forks);
+	if (params->forks != NULL)
+		free(params->forks);
 }
