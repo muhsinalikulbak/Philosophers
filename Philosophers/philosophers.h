@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 21:54:32 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 23:39:54 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_philo
 }			t_philo;
 
 long	get_current_time(void);
-void	ft_perror(char *message);
 bool	argv_checker(int argc, char **argv);
 void	free_resources(t_params *params, t_philo *philos, bool is_init_philo);
 bool	initializer(t_params *params, t_philo *philos, int argc, char **argv);

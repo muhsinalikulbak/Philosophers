@@ -6,7 +6,7 @@
 #    By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 01:36:07 by mkulbak           #+#    #+#              #
-#    Updated: 2025/05/12 22:07:39 by mkulbak          ###   ########.fr        #
+#    Updated: 2025/05/12 23:39:49 by mkulbak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,8 +25,6 @@ SRCS = $(SRC_DIR)/philosophers.c \
        $(SRC_DIR)/initializer.c \
        $(SRC_DIR)/clear_resources.c \
        $(SRC_DIR)/error_manage.c \
-       $(SRC_DIR)/ft_perror.c \
-
 
 
 OBJS = $(SRCS:.c=.o)

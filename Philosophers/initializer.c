@@ -6,14 +6,11 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/12 21:55:52 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/12 22:25:05 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-
-// sim_end ve sim_start olucak mı olucaksa neden gerek var
 
 static bool	init_params(t_params *params, int argc, char **argv)
 {
@@ -75,7 +72,7 @@ static pthread_mutex_t	*init_mutex(int philo_count)
 
 bool	initializer(t_params *params, t_philo *philos, int argc, char **argv)
 {
-	pthread_mutex_t *forks;
+	pthread_mutex_t	*forks;
 
 	if (!init_params(params, argc, argv))
 		return (error_manage(EMALLOC, NULL, philos, false));
