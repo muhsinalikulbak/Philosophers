@@ -23,7 +23,7 @@ SRCS = $(SRC_DIR)/philosophers.c \
        $(SRC_DIR)/argv_checker.c \
        $(SRC_DIR)/utils.c \
        $(SRC_DIR)/initializer.c \
-       $(SRC_DIR)/clear_resources.c \
+       $(SRC_DIR)/free_resources.c \
        $(SRC_DIR)/error_manage.c \
 
 

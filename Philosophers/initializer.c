@@ -18,14 +18,14 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	params->time_to_die = ft_atoi(argv[2]);
 	params->time_to_eat = ft_atoi(argv[3]);
 	params->time_to_sleep = ft_atoi(argv[4]);
-	params->print_mutex = malloc(sizeof(pthread_mutex_t));
-	if (params->print_mutex == NULL)
-		return (false);
-	pthread_mutex_init(params->print_mutex, NULL);
 	if (argc == 6)
 		params->must_eat = ft_atoi(argv[5]);
 	else
 		params->must_eat = -1;
+	params->print_mutex = malloc(sizeof(pthread_mutex_t));
+	if (params->print_mutex == NULL)
+		return (false);
+	pthread_mutex_init(params->print_mutex, NULL);
 	params->sim_end = false;
 	return (true);
 }
