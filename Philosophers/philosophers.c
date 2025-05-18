@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/13 00:22:29 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/19 01:10:26 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int	main(int argc, char **argv)
 
 	if (!argv_checker(argc, argv))
 		return (error_manage(EINVAL, NULL, NULL, false));
-	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
-	if (philos == NULL)
-		return (error_manage(EMALLOC, NULL, NULL, false));
-	if (!initializer(&params, philos, argc, argv))
+	if (!initializer(&params, &philos, argc, argv))
 		return (EXIT_FAILURE);
+
+
 	free_resources(&params, philos, true);
 }

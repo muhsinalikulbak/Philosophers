@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/13 00:22:32 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/19 02:04:06 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,13 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	t_params		*params;
 	int				id;
-	int				last_meal_time;
+	lonh			last_meal_time;
 	int				meals_eaten;
 }			t_philo;
 
 long	get_current_time(void);
 bool	argv_checker(int argc, char **argv);
 void	free_resources(t_params *params, t_philo *philos, bool is_init_philo);
-bool	initializer(t_params *params, t_philo *philos, int argc, char **argv);
+bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
 int		error_manage(int error_code, t_params *param, t_philo *phi, bool init);
 #endif

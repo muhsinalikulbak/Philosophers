@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/13 00:22:27 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/19 01:09:22 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ static pthread_mutex_t	*init_mutex(int philo_count)
 	return (forks);
 }
 
-bool	initializer(t_params *params, t_philo *philos, int argc, char **argv)
+bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 {
 	pthread_mutex_t	*forks;
+	t_philo			*philos;
 
+	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
+	if (philos == NULL)
+		return (error_manage(EMALLOC, NULL, NULL, false));
 	if (!init_params(params, argc, argv))
 		return (error_manage(EMALLOC, NULL, philos, false));
 	forks = init_mutex(params->philo_count);
@@ -85,5 +89,6 @@ bool	initializer(t_params *params, t_philo *philos, int argc, char **argv)
 	params->forks = forks;
 	if (!init_philo(philos, params, forks))
 		return (error_manage(EMALLOC, params, philos, true));
+	*_philos = philos; 
 	return (true);
 }
