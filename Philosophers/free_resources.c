@@ -24,10 +24,13 @@ static	void	destroy_mutex(t_philo *philos, t_params *params)
 		i++;
 	}
 	i = 0;
-	while (params != NULL && i < params->philo_count)
+	if (params->forks != NULL)
 	{
-		pthread_mutex_destroy(&params->forks[i]);
-		i++;
+		while (params != NULL && i < params->philo_count)
+		{
+			pthread_mutex_destroy(&params->forks[i]);
+			i++;
+		}
 	}
 }
 
