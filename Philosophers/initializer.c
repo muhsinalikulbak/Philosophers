@@ -25,7 +25,8 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	params->print_mutex = malloc(sizeof(pthread_mutex_t));
 	if (params->print_mutex == NULL)
 		return (false);
-	pthread_mutex_init(params->print_mutex, NULL);
+	if (pthread_mutex_init(params->print_mutex, NULL) != 0)
+		return (false);
 	params->sim_end = false;
 	return (true);
 }
@@ -47,7 +48,8 @@ static bool	init_philo(
 		philos[i].meal_mutex = malloc(sizeof(pthread_mutex_t));
 		if (philos[i].meal_mutex == NULL)
 			return (false);
-		pthread_mutex_init(philos[i].meal_mutex, NULL);
+		if (pthread_mutex_init(philos[i].meal_mutex, NULL) != 0)
+			return (false);
 		i++;
 	}
 	return (true);
@@ -64,7 +66,8 @@ static pthread_mutex_t	*init_mutex(int philo_count)
 		return (NULL);
 	while (i < philo_count)
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
+			return (NULL);
 		i++;
 	}
 	return (forks);
