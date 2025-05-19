@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_manage.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:09:48 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/13 00:22:22 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/20 02:06:38 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,4 @@ int	error_manage(int error_code, t_params *param, t_philo *phi, bool init)
 	}
 	return (EXIT_FAILURE);
 }
+	
