@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/19 02:04:06 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/19 03:23:27 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	t_params		*params;
 	int				id;
-	lonh			last_meal_time;
+	long			last_meal_time;
 	int				meals_eaten;
 }			t_philo;
 
@@ -58,4 +58,12 @@ bool	argv_checker(int argc, char **argv);
 void	free_resources(t_params *params, t_philo *philos, bool is_init_philo);
 bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
 int		error_manage(int error_code, t_params *param, t_philo *phi, bool init);
+void	take_forks(t_philo *philo);
+void	eat(t_philo *philo);
+void	sleep(t_philo *philo);
+void	thinking(t_philo *philo);
+void	put_forks(t_philo *philo);
+void	print_status(t_philo *philo, long event_time, char *status);
+void	accurate_sleep(int ms_time);
+
 #endif
