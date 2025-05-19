@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:59:24 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/19 03:01:52 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/20 02:52:10 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ long	get_current_time(void)
 void	print_status(t_philo *philo, long event_time, char *status)
 {
 	pthread_mutex_lock(philo->params->print_mutex);
-	printf("%ld %d %s\n",event_time, philo->id, status);
+	if (!philo->params->sim_end)
+		printf("%ld %d %s\n",event_time, philo->id, status);
 	pthread_mutex_unlock(philo->params->print_mutex);
 }
 
@@ -32,6 +33,6 @@ void	accurate_sleep(int ms_time)
 	long	start_time;
 
 	start_time = get_current_time();
-	while ((get_current_time - start_time) < ms_time)
+	while ((get_current_time() - start_time) < ms_time)
 		usleep(100);
 }
