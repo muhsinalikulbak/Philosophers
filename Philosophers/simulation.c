@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/21 02:26:26 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 02:33:42 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	*philosopher_routine(void *arg)
 	pthread_mutex_lock(philo->meal_mutex);
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(philo->meal_mutex);
-	while (condition)
+	while (is_sim_ended())
 	{
 		take_forks(philo);
 		eat(philo);
@@ -44,7 +44,6 @@ static void	create_thread(t_philo *philos)
 		}
 		i++;
 	}
-	
 }
 
 static void	wait_thread(t_philo *philos)
@@ -57,16 +56,16 @@ static void	wait_thread(t_philo *philos)
 		pthread_join(philos[i].thread, NULL);
 		i++;
 	}
-	
-	
 }
 
-bool	is_sim_ended()
+static bool	is_sim_ended()
 {
 	
 }
 
-void	start_simulation(t_philo)
+void	start_simulation(t_philo *philos)
 {
+	create_thread(philos);
+	wait_thread(philos);
 
 }
