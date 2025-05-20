@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/19 03:23:27 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 02:19:58 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include "../libft/libft.h"
 
 # define EINVAL 10
-# define EMALLOC 11
+# define STDERR 10
 
 # define RESET   "\033[0m"
 # define RED     "\033[31m"
@@ -33,6 +33,7 @@ typedef struct s_params
 {
 	pthread_mutex_t	*print_mutex;
 	pthread_mutex_t	*forks;
+	pthread_t		*supervisor;
 	int				philo_count;
 	int				time_to_die;
 	int				time_to_eat;
@@ -55,12 +56,12 @@ typedef struct s_philo
 
 long	get_current_time(void);
 bool	argv_checker(int argc, char **argv);
-void	free_resources(t_params *params, t_philo *philos, bool is_init_philo);
+void	free_resources(t_params *params, t_philo *philos);
 bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
-int		error_manage(int error_code, t_params *param, t_philo *phi, bool init);
+int		error_manage(int error_code, t_params *param, t_philo *phi);
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
-void	sleep(t_philo *philo);
+void	sleep_philo(t_philo *philo);
 void	thinking(t_philo *philo);
 void	put_forks(t_philo *philo);
 void	print_status(t_philo *philo, long event_time, char *status);

@@ -6,16 +6,19 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/19 03:27:36 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 02:26:26 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	*philosopher_routine(void *arg)
+static void	*philosopher_routine(void *arg)
 {
 	t_philo *philo = (t_philo*)(arg);
 
+	pthread_mutex_lock(philo->meal_mutex);
+	philo->last_meal_time = get_current_time();
+	pthread_mutex_unlock(philo->meal_mutex);
 	while (condition)
 	{
 		take_forks(philo);
@@ -25,4 +28,45 @@ void	*philosopher_routine(void *arg)
 		thinking(philo);
 	}
 	return (NULL);
+}
+
+static void	create_thread(t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < philos->params->philo_count)
+	{
+		if (pthread_create(&philos[i].thread, NULL, philosopher_routine, &philos[i]) != 0)
+		{
+			error_manage(STDERR, philos->params, philos);
+			return ;
+		}
+		i++;
+	}
+	
+}
+
+static void	wait_thread(t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < philos->params->philo_count)
+	{
+		pthread_join(philos[i].thread, NULL);
+		i++;
+	}
+	
+	
+}
+
+bool	is_sim_ended()
+{
+	
+}
+
+void	start_simulation(t_philo)
+{
+
 }

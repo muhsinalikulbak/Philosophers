@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/19 01:09:22 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 02:27:04 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static bool	init_philo(
 	while (i < params->philo_count)
 	{
 		philos[i].id = i + 1;
-		philos[i].last_meal_time = 0;
 		philos[i].meals_eaten = 0;
 		philos[i].params = params;
 		philos[i].left_fork = &forks[i];
@@ -80,15 +79,15 @@ bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 
 	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
 	if (philos == NULL)
-		return (error_manage(EMALLOC, NULL, NULL, false));
+		return (error_manage(STDERR, NULL, NULL));
 	if (!init_params(params, argc, argv))
-		return (error_manage(EMALLOC, NULL, philos, false));
+		return (error_manage(STDERR, NULL, philos));
 	forks = init_mutex(params->philo_count);
 	if (forks == NULL)
-		return (error_manage(EMALLOC, params, philos, false));
+		return (error_manage(STDERR, params, philos));
 	params->forks = forks;
 	if (!init_philo(philos, params, forks))
-		return (error_manage(EMALLOC, params, philos, true));
+		return (error_manage(STDERR, params, philos));
 	*_philos = philos; 
 	return (true);
 }

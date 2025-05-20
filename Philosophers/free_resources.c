@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_resources.c                                  :+:      :+:    :+:   */
+/*   free_resources.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:54 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/13 00:22:20 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/21 02:00:45 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,19 @@ static	void	destroy_mutex(t_philo *philos, t_params *params)
 	int	i;
 
 	i = 0;
-	while (philos != NULL && i < params->philo_count && philos[i].meal_mutex != NULL)
+	if (params != NULL && philos != NULL)
 	{
-		pthread_mutex_destroy(philos[i].meal_mutex);
-		free(philos[i].meal_mutex);
-		i++;
+		while (i < params->philo_count && philos[i].meal_mutex != NULL)
+		{
+			pthread_mutex_destroy(philos[i].meal_mutex);
+			free(philos[i].meal_mutex);
+			i++;
+		}
 	}
 	i = 0;
-	if (params->forks != NULL)
+	if (params != NULL && params->forks != NULL)
 	{
-		while (params != NULL && i < params->philo_count)
+		while (i < params->philo_count)
 		{
 			pthread_mutex_destroy(&params->forks[i]);
 			i++;
@@ -34,7 +37,7 @@ static	void	destroy_mutex(t_philo *philos, t_params *params)
 	}
 }
 
-void	free_resources(t_params *params, t_philo *philos, bool is_init_philo)
+void	free_resources(t_params *params, t_philo *philos)
 {
 	if (params != NULL && params->print_mutex != NULL)
 	{
@@ -43,8 +46,7 @@ void	free_resources(t_params *params, t_philo *philos, bool is_init_philo)
 	}
 	if (philos != NULL)
 	{
-		if(is_init_philo)
-			destroy_mutex(philos, params);
+		destroy_mutex(philos, params);
 		free(philos);
 	}
 	if (params != NULL && params->forks != NULL)
