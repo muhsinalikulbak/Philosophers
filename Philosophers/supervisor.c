@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 02:36:50 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/21 23:58:28 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 00:23:40 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static bool check_death(t_philo *philo)
 		{
 			print_status(philo, curr_time, "is died");
 			pthread_mutex_lock(params->death_mutex);
-			params->sim_end = true;
+			params->sim_end = false;
 			pthread_mutex_unlock(params->death_mutex);
 			return (true);
 		}

@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 11:39:15 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 00:23:28 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	init_params(t_params *params, int argc, char **argv)
 		return (false);
 	if (pthread_mutex_init(params->death_mutex, NULL) != 0)
 		return (false);
-	params->sim_end = false;
+	params->sim_end = true;
 	return (true);
 }
 
