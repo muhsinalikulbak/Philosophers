@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/22 01:49:08 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 02:08:34 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ bool	argv_checker(int argc, char **argv)
 		str_num = ft_strtrim(argv[i], " ");
 		if (str_num == NULL)
 			return (false);
+		if (str_num[0] == '\0')
+		{
+			free(str_num);
+			return (false);
+		}
 		check = !digit_check(str_num) || !overflow_check(str_num);
 		free(str_num);
 		if (check)
