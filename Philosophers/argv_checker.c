@@ -6,12 +6,11 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/13 00:22:16 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:17:29 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-#include <limits.h>
 
 static bool	overflow_check(char *str)
 {
@@ -24,7 +23,7 @@ static bool	overflow_check(char *str)
 	if (ft_strlen(str + i) > 10)
 		return (false);
 	num = ft_atol(str);
-	if (num > INT_MAX || num < INT_MIN)
+	if (num > 2147483648L || num < -2147483648L)
 		return (false);
 	return (true);
 }

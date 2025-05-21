@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 11:33:04 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 18:16:12 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_params
 	pthread_mutex_t	*print_mutex;
 	pthread_mutex_t	*death_mutex;
 	pthread_mutex_t	*forks;
-	pthread_t		*supervisor;
+	pthread_t		supervisor;
 	int				philo_count;
 	int				time_to_die;
 	int				time_to_eat;
@@ -67,5 +67,6 @@ void	thinking(t_philo *philo);
 void	put_forks(t_philo *philo);
 void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
+void    *supervisor_routine(void *arg);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/21 11:54:05 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 19:15:04 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,24 +62,48 @@ static bool	create_thread(t_philo *philos)
 		}
 		i++;
 	}
+	if (pthread_create(&philos->params->supervisor, NULL, supervisor_routine, philos) != 0)
+	{
+		error_manage(STDERR, philos->params, philos);
+		return (false);
+	}
+	return (true);
 }
 
-static void	wait_thread(t_philo *philos)
+static bool	wait_thread(t_philo *philos)
 {
 	int	i;
 
 	i = 0;
 	while (i < philos->params->philo_count)
 	{
-		pthread_join(philos[i].thread, NULL);
+		if (pthread_join(philos[i].thread, NULL) != 0)
+		{
+			error_manage(STDERR, philos->params, philos);
+			return (false);
+		}
 		i++;
 	}
+	if (pthread_join(philos->params->supervisor, NULL) != 0)
+	{
+		error_manage(STDERR, philos->params, philos);
+		return (false);
+	}
+	return (true);
 }
 
 
 bool start_simulation(t_philo *philos)
 {
-	create_thread(philos);
-	wait_thread(philos);
-
+	if (!create_thread(philos))
+	{
+		error_manage(STDERR, philos->params, philos);
+		return (false);
+	}
+	if (!wait_thread(philos))
+	{
+		error_manage(STDERR, philos->params, philos);
+		return (false);
+	}
+	return (true);
 }
