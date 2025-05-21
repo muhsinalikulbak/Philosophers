@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 02:19:58 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 11:33:04 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 typedef struct s_params
 {
 	pthread_mutex_t	*print_mutex;
+	pthread_mutex_t	*death_mutex;
 	pthread_mutex_t	*forks;
 	pthread_t		*supervisor;
 	int				philo_count;

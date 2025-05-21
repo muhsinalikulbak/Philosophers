@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/21 03:06:55 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 11:54:05 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static bool	is_sim_ended(t_philo *philo)
 {
 	bool	status;
 	
-	pthread_mutex_lock(philo->params->print_mutex);
+	pthread_mutex_lock(philo->params->death_mutex);
 	status = philo->params->sim_end;
-	pthread_mutex_unlock(philo->params->print_mutex);
+	pthread_mutex_unlock(philo->params->death_mutex);
 	return (status);
 }
 

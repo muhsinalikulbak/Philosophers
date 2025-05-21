@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:54 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 02:00:45 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 11:40:38 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,18 @@ static	void	destroy_mutex(t_philo *philos, t_params *params)
 
 void	free_resources(t_params *params, t_philo *philos)
 {
-	if (params != NULL && params->print_mutex != NULL)
+	if (params != NULL)
 	{
-		pthread_mutex_destroy(params->print_mutex);
-		free(params->print_mutex);
+		if (params->print_mutex != NULL)
+		{
+			pthread_mutex_destroy(params->print_mutex);
+			free(params->print_mutex);
+		}
+		if (params->death_mutex != NULL)
+		{
+			pthread_mutex_destroy(params->death_mutex);
+			free(params->death_mutex);
+		}
 	}
 	if (philos != NULL)
 	{

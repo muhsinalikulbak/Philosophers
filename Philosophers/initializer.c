@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 02:27:04 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 11:39:15 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	else
 		params->must_eat = -1;
 	params->print_mutex = malloc(sizeof(pthread_mutex_t));
-	if (params->print_mutex == NULL)
+	params->death_mutex = malloc(sizeof(pthread_mutex_t));
+	if (params->print_mutex == NULL || params->death_mutex == NULL)
 		return (false);
 	if (pthread_mutex_init(params->print_mutex, NULL) != 0)
+		return (false);
+	if (pthread_mutex_init(params->death_mutex, NULL) != 0)
 		return (false);
 	params->sim_end = false;
 	return (true);
