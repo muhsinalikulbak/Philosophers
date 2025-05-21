@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/21 20:41:04 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/21 21:07:47 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	*philosopher_routine(void *arg)
 		take_forks(philo);
 		eat(philo);
 		put_forks(philo);
-		sleep(philo);
+		sleep_philo(philo);
 		thinking(philo);
 	}
 	return (NULL);
