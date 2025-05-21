@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:59:24 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/22 00:46:38 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 01:44:35 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ long	get_current_time(void)
 void	print_status(t_philo *philo, long event_time, char *status)
 {
 	bool	sim_end;
+	long	start_time;
 
+	start_time = philo->params->start_time;
 	pthread_mutex_lock(philo->params->death_mutex);
 	sim_end = philo->params->sim_end;
 	pthread_mutex_unlock(philo->params->death_mutex);
 	pthread_mutex_lock(philo->params->print_mutex);
 	if (sim_end)
-		printf("%ld %d %s\n", event_time, philo->id, status);
+		printf("%ld %d %s\n", event_time - start_time, philo->id, status);
 	pthread_mutex_unlock(philo->params->print_mutex);
 }
 

@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/22 00:26:19 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 01:39:57 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_params
 	pthread_mutex_t	*death_mutex;
 	pthread_mutex_t	*forks;
 	pthread_t		supervisor;
+	long			start_time;
 	int				philo_count;
 	int				time_to_die;
 	int				time_to_eat;

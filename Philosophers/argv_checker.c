@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argv_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 19:20:03 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/22 01:49:08 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	overflow_check(char *str)
 	if (ft_strlen(str + i) > 10)
 		return (false);
 	num = ft_atol(str);
-	if (num > 2147483648L || num < -2147483648L)
+	if (num > 2147483648L || num < -2147483648L || num == 0)
 		return (false);
 	return (true);
 }
@@ -33,8 +33,6 @@ static bool	digit_check(char *str)
 	int	plus;
 	int	i;
 
-	if (ft_strlen(str) == 1 && str[0] == '0')
-		return (false);
 	i = 0;
 	plus = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
@@ -47,7 +45,7 @@ static bool	digit_check(char *str)
 			return (false);
 		i++;
 	}
-	if ((plus == 1 && str[0] == '+') || plus == 0)
+	if ((ft_strlen(str) != 1 && plus == 1 && str[0] == '+') || plus == 0)
 		return (true);
 	return (false);
 }

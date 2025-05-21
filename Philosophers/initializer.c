@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/22 00:25:48 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 01:40:10 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	if (pthread_mutex_init(params->death_mutex, NULL) != 0)
 		return (false);
 	params->sim_end = true;
+	params->start_time = get_current_time();
 	return (true);
 }
 
