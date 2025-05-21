@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 19:17:29 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:20:03 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ bool	argv_checker(int argc, char **argv)
 	while (i < argc)
 	{
 		str_num = ft_strtrim(argv[i], " ");
+		if (str_num == NULL)
+			return (false);
 		check = !digit_check(str_num) || !overflow_check(str_num);
 		free(str_num);
 		if (check)
