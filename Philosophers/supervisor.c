@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 02:36:50 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/22 00:30:31 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 01:16:58 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,23 @@ static bool	check_death(t_philo *philo)
 static bool	check_meals(t_philo *philo)
 {
 	int	i;
-	int	meal_conut;
+	int	meal_count;
+	int	meals_eaten;
 
 	if (philo->params->must_eat == -1)
 		return (false);
 	i = 0;
-	meal_conut = 0;
+	meal_count = 0;
 	while (i < philo->params->philo_count)
 	{
-		if (philo[i].meals_eaten >= philo->params->must_eat)
-			meal_conut++;
+		pthread_mutex_lock(philo[i].meal_mutex);
+		meals_eaten = philo[i].meals_eaten;
+		pthread_mutex_unlock(philo[i].meal_mutex);
+		if (meals_eaten >= philo->params->must_eat)
+			meal_count++;
 		i++;
 	}
-	if (meal_conut == philo->params->must_eat)
+	if (meal_count == philo->params->philo_count)
 		return (true);
 	return (false);
 }

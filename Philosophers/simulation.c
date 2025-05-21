@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/22 00:29:39 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 00:44:50 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	*philosopher_routine(void *arg)
 
 	philo = (t_philo *)(arg);
 	pthread_mutex_lock(philo->meal_mutex);
-	philo->last_meal_time = get_current_time();
+	philo->last_meal_time = get_current_time();//
 	pthread_mutex_unlock(philo->meal_mutex);
 	if (philo->params->philo_count == 1)
 	{
