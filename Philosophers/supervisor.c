@@ -6,13 +6,13 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 02:36:50 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/22 00:23:40 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 00:30:31 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static bool check_death(t_philo *philo)
+static bool	check_death(t_philo *philo)
 {
 	t_params	*params;
 	long		curr_time;
@@ -40,7 +40,7 @@ static bool check_death(t_philo *philo)
 	return (false);
 }
 
-static bool check_meals(t_philo *philo)
+static bool	check_meals(t_philo *philo)
 {
 	int	i;
 	int	meal_conut;
@@ -64,7 +64,7 @@ void	*supervisor_routine(void *arg)
 {
 	t_philo	*philo;
 
-	philo = (t_philo*)(arg);
+	philo = (t_philo *)(arg);
 	while (true)
 	{
 		if (check_death(philo) || check_meals(philo))

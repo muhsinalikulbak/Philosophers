@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/22 00:23:28 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 00:25:48 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,6 @@ bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 	params->forks = forks;
 	if (!init_philo(philos, params, forks))
 		return (error_manage(STDERR, params, philos));
-	*_philos = philos; 
+	*_philos = philos;
 	return (true);
 }

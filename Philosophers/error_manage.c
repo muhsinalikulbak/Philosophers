@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 19:09:48 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 02:08:17 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 00:25:27 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,3 @@ int	error_manage(int error_code, t_params *param, t_philo *phi)
 	}
 	return (EXIT_FAILURE);
 }
-	
