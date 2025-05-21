@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 02:49:18 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/21 02:07:38 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/21 20:28:43 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	take_forks(t_philo *philo)
 		pthread_mutex_lock(philo->left_fork);
 		print_status(philo, get_current_time(), "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
-		print_status(philo, get_current_time(), "has taken a fork");
+		print_status(philo, get_current_time(), "has sstaken a fork");
 	}
 }
 

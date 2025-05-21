@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 18:16:12 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/21 19:21:08 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	put_forks(t_philo *philo);
 void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
 void    *supervisor_routine(void *arg);
+bool start_simulation(t_philo *philos);
 
 #endif
