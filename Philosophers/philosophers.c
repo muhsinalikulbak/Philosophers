@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/21 20:39:21 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/21 21:38:41 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ int	main(int argc, char **argv)
 	sim_status = start_simulation(philos);
 	if (sim_status)
 		free_resources(&params, philos);
+	return (EXIT_SUCCESS);
 }
