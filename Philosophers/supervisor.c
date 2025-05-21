@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 02:36:50 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/22 01:16:58 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 02:33:02 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ static bool	check_death(t_philo *philo)
 	int			i;
 
 	i = 0;
-	params = philo->params;
 	curr_time = get_current_time();
-	pthread_mutex_lock(philo->meal_mutex);
-	last_time = philo->last_meal_time;
-	pthread_mutex_unlock(philo->meal_mutex);
+	params = philo->params;
 	while (i < philo->params->philo_count)
 	{
+		pthread_mutex_lock(philo[i].meal_mutex);
+		last_time = philo[i].last_meal_time;
+		pthread_mutex_unlock(philo[i].meal_mutex);
 		if (curr_time - last_time > params->time_to_die)
 		{
-			print_status(philo, curr_time, "is died");
+			print_status(&philo[i], curr_time, "died");
 			pthread_mutex_lock(params->death_mutex);
 			params->sim_end = false;
 			pthread_mutex_unlock(params->death_mutex);
@@ -48,19 +48,23 @@ static bool	check_meals(t_philo *philo)
 
 	if (philo->params->must_eat == -1)
 		return (false);
-	i = 0;
+	i = -1;
 	meal_count = 0;
-	while (i < philo->params->philo_count)
+	while (++i < philo->params->philo_count)
 	{
 		pthread_mutex_lock(philo[i].meal_mutex);
 		meals_eaten = philo[i].meals_eaten;
 		pthread_mutex_unlock(philo[i].meal_mutex);
 		if (meals_eaten >= philo->params->must_eat)
 			meal_count++;
-		i++;
 	}
 	if (meal_count == philo->params->philo_count)
+	{
+		pthread_mutex_lock(philo->params->death_mutex);
+		philo->params->sim_end = false;
+		pthread_mutex_unlock(philo->params->death_mutex);
 		return (true);
+	}
 	return (false);
 }
 
