@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:59:24 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/22 01:44:35 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/05/22 18:13:40 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	accurate_sleep(int ms_time)
 
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < ms_time)
-		usleep(100);
+		usleep(50);
 }
