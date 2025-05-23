@@ -6,7 +6,7 @@
 #    By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 01:36:07 by mkulbak           #+#    #+#              #
-#    Updated: 2025/05/23 17:23:19 by mkulbak          ###   ########.fr        #
+#    Updated: 2025/05/23 17:51:43 by mkulbak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,4 +44,4 @@ fclean: clean
 	rm -f $(NAME)
 	echo "✅ Full clean complete."
 
-re: f
+re: fclean all
