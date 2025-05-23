@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/23 17:22:55 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/23 19:00:17 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ bool	argv_checker(int argc, char **argv)
 			free(str_num);
 			return (false);
 		}
-		check = !digit_check(str_num) || !overflow_check(str_num);
+		check = (!digit_check(str_num) || !overflow_check(str_num));
 		free(str_num);
 		if (check)
 			return (false);
