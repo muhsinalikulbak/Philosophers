@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/23 18:59:11 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/25 20:41:12 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,9 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	params->time_to_die = ft_atoi(argv[2]);
 	params->time_to_eat = ft_atoi(argv[3]);
 	params->time_to_sleep = ft_atoi(argv[4]);
+	params->must_eat = -1;
 	if (argc == 6)
 		params->must_eat = ft_atoi(argv[5]);
-	else
-		params->must_eat = -1;
 	params->print_mutex = malloc(sizeof(pthread_mutex_t));
 	params->death_mutex = malloc(sizeof(pthread_mutex_t));
 	if (params->print_mutex == NULL || params->death_mutex == NULL)
