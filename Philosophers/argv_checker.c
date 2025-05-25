@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argv_checker.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/23 19:00:17 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/25 20:30:54 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	overflow_check(char *str)
 	if (ft_strlen(str + i) > 10)
 		return (false);
 	num = ft_atol(str);
-	if (num > 2147483648L || num < -2147483648L || num == 0)
+	if (num > 2147483647L || num < -2147483648L || num == 0)
 		return (false);
 	return (true);
 }
