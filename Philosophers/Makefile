@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+         #
+#    By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 01:36:07 by mkulbak           #+#    #+#              #
-#    Updated: 2025/05/27 16:50:34 by mkulbak          ###   ########.fr        #
+#    Updated: 2025/05/28 01:36:55 by muhsin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philosophers
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -pthread 
 
 SRCS = main.c argv_checker.c utils.c initializer.c free_resources.c error_manage.c simulation.c \
 	supervisor.c events.c libft_utils1.c libft_utils2.c
