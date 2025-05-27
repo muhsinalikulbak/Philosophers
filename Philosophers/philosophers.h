@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/23 18:59:08 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/27 17:23:05 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	argv_checker(int argc, char **argv);
 void	free_resources(t_params *params, t_philo *philos);
 bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
 int		error_manage(int error_code, t_params *param, t_philo *phi);
-void	take_forks(t_philo *philo);
+bool	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	sleep_philo(t_philo *philo);
 void	thinking(t_philo *philo);

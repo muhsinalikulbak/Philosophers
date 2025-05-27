@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/23 17:23:27 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/27 17:29:28 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static void	*philosopher_routine(void *arg)
 	}
 	while (is_sim_ended(philo))
 	{
-		take_forks(philo);
+		if (!take_forks(philo))
+			return (NULL);
 		eat(philo);
 		put_forks(philo);
 		sleep_philo(philo);

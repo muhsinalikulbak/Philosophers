@@ -6,13 +6,13 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 02:49:18 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/23 18:05:22 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/05/27 17:22:51 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	take_forks(t_philo *philo)
+bool	take_forks(t_philo *philo)
 {
 	int	must_eat;
 	int	meals_eaten;
@@ -22,7 +22,7 @@ void	take_forks(t_philo *philo)
 	pthread_mutex_unlock(philo->meal_mutex);
 	must_eat = philo->params->must_eat;
 	if (must_eat != -1 && meals_eaten >= must_eat)
-		return ;
+		return (false);
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
@@ -37,6 +37,7 @@ void	take_forks(t_philo *philo)
 		pthread_mutex_lock(philo->right_fork);
 		print_status(philo, get_current_time(), "has taken a fork");
 	}
+	return (true);
 }
 
 void	eat(t_philo *philo)
