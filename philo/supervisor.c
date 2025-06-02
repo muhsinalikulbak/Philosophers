@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   supervisor.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 02:36:50 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/29 01:08:49 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/02 21:33:33 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*supervisor_routine(void *arg)
 	{
 		if (check_death(philo) || check_meals(philo))
 			break ;
-		accurate_sleep(5);
+		accurate_sleep(1);
 	}
 	return (NULL);
 }
