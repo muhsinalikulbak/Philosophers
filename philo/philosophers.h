@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/03 09:56:14 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/03 10:00:42 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,19 @@ typedef struct s_philo
 	int				meals_eaten;
 }			t_philo;
 
-bool	ft_isdigit(int c);
-int		ft_atoi(const char *str);
-long	ft_atol(const char *str);
+size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char	*s1);
 void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
+long	ft_atol(const char *str);
 long	get_current_time(void);
-bool	argv_checker(int argc, char **argv);
-void	free_resources(t_params *params, t_philo *philos);
-bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
+int		ft_atoi(const char *str);
 int		error_manage(int error_code, t_params *param, t_philo *phi);
+bool	ft_isdigit(int c);
+bool	argv_checker(int argc, char **argv);
+bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
+bool	start_simulation(t_philo *philos);
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	sleep_philo(t_philo *philo);
@@ -76,5 +76,5 @@ void	put_forks(t_philo *philo);
 void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
 void	*supervisor_routine(void *arg);
-bool	start_simulation(t_philo *philos);
+void	free_resources(t_params *params, t_philo *philos);
 #endif
