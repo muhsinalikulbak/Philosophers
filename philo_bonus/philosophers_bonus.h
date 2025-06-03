@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/03 10:01:10 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/03 12:38:35 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <semaphore.h>
+#include <fcntl.h>
 
 # define EINVAL 10
 # define STDERR 10
@@ -32,36 +33,36 @@
 
 typedef struct s_params
 {
-	pthread_mutex_t	*print_mutex;
-	pthread_mutex_t	*death_mutex;
-	pthread_mutex_t	*forks;
-	pthread_t		supervisor;
-	long			start_time;
-	int				philo_count;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				must_eat;
-	bool			sim_end;
+	sem_t	*print_sem;
+	sem_t	*death_sem;
+	sem_t	**forks;
+	long	start_time;
+	int		philo_count;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		must_eat;
+	bool	sim_end;
 }				t_params;
 
 typedef struct s_philo
 {
-	pthread_t		thread;
-	pthread_mutex_t	*meal_mutex;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	t_params		*params;
-	int				id;
-	long			last_meal_time;
-	int				meals_eaten;
+	sem_t		*meal_mutex;
+	sem_t		*left_fork;
+	sem_t		*right_fork;
+	t_params	*params;
+	int			id;
+	long		last_meal_time;
+	int			meals_eaten;
 }			t_philo;
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char	*s1);
-void	*ft_calloc(size_t count, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
+char	*ft_itoa(int n);
+char	*ft_strjoin(char const *s1, char const *s2);
+void	*ft_calloc(size_t count, size_t size);
 long	ft_atol(const char *str);
 long	get_current_time(void);
 int		ft_atoi(const char *str);

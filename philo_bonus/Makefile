@@ -6,7 +6,7 @@
 #    By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 18:46:30 by mkulbak           #+#    #+#              #
-#    Updated: 2025/05/31 18:50:24 by mkulbak          ###   ########.fr        #
+#    Updated: 2025/06/03 10:31:05 by mkulbak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philosophers_bonus
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread 
 
-SRCS = main.c argv_checker.c utils.c   error_manage.c \
+SRCS = main.c argv_checker.c utils.c   error_manage.c initializer.c\
 	  libft_utils1.c libft_utils2.c
 
 OBJDIR = obj

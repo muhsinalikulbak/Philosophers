@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:56:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/25 21:57:12 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/03 10:40:45 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,30 @@ char	*ft_strdup(const char	*s1)
 	}
 	heap_str[i] = '\0';
 	return (heap_str);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	start;
+	size_t	end;
+	char	*result;
+	int		*map;
+
+	map = (int *)ft_calloc(256, sizeof(int));
+	if (!map)
+		return (NULL);
+	while (*set)
+	{
+		map[(int)*set] = -1;
+		set++;
+	}
+	start = 0;
+	end = ft_strlen(s1) - 1 ;
+	while (s1[start] && map[(int)s1[start]] == -1)
+		start++;
+	while (s1[start] && map[(int)s1[end]] == -1)
+		end--;
+	result = ft_substr(s1, start, end - start + 1);
+	free(map);
+	return (result);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:56:32 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/25 21:57:07 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/03 10:40:37 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,48 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+static	int	digit_count(long *num)
 {
-	size_t	start;
-	size_t	end;
-	char	*result;
-	int		*map;
+	int		count;
+	long	copy;
 
-	map = (int *)ft_calloc(256, sizeof(int));
-	if (!map)
-		return (NULL);
-	while (*set)
+	copy = *num;
+	count = 0;
+	if (copy <= 0)
 	{
-		map[(int)*set] = -1;
-		set++;
+		count++;
+		*num = -*num;
+		copy = -copy;
 	}
-	start = 0;
-	end = ft_strlen(s1) - 1 ;
-	while (s1[start] && map[(int)s1[start]] == -1)
-		start++;
-	while (s1[start] && map[(int)s1[end]] == -1)
-		end--;
-	result = ft_substr(s1, start, end - start + 1);
-	free(map);
-	return (result);
+	while (copy > 0)
+	{
+		count++;
+		copy /= 10;
+	}
+	return (count);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*res;
+	int		count;
+	long	long_num;
+
+	long_num = n;
+	count = 0;
+	count = digit_count(&long_num);
+	if (n < 0)
+		n = -1;
+	res = (char *)malloc(sizeof(char) * (count + 1));
+	if (!res)
+		return (NULL);
+	res[count--] = '\0';
+	while (count >= 0)
+	{
+		res[count--] = long_num % 10 + '0';
+		long_num /= 10;
+	}
+	if (n == -1)
+		res[0] = '-';
+	return (res);
 }
