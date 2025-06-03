@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/29 00:50:14 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/03 09:56:14 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include "../libft/libft.h"
 
 # define EINVAL 10
 # define STDERR 10
@@ -56,6 +55,14 @@ typedef struct s_philo
 	int				meals_eaten;
 }			t_philo;
 
+bool	ft_isdigit(int c);
+int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
+char	*ft_strdup(const char	*s1);
+void	*ft_calloc(size_t count, size_t size);
+size_t	ft_strlen(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strtrim(char const *s1, char const *set);
 long	get_current_time(void);
 bool	argv_checker(int argc, char **argv);
 void	free_resources(t_params *params, t_philo *philos);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/25 21:58:53 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/03 04:08:36 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <stdbool.h>
+# include <semaphore.h>
 
 # define EINVAL 10
 # define STDERR 10
