@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/03 12:38:30 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/04 00:21:29 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	params->must_eat = -1;
 	if (argc == 6)
 		params->must_eat = ft_atoi(argv[5]);
-	if (params->death_sem = sem_open("/death", O_CREAT, 0644, 1) == SEM_FAILED)
-		return (false);
-	if (params->print_sem = sem_open("/print", O_CREAT, 0644, 1) == SEM_FAILED)
+	params->death_sem = sem_open("/death", O_CREAT, 0644, 1);
+	params->print_sem = sem_open("/print", O_CREAT, 0644, 1);
+	if (params->death_sem == SEM_FAILED || params->print_sem == SEM_FAILED)
 		return (false);
 	params->sim_end = true;
 	params->start_time = get_current_time();
@@ -31,7 +31,7 @@ static bool	init_params(t_params *params, int argc, char **argv)
 }
 
 static bool	init_philo(
-	t_philo *philos, t_params *params, pthread_mutex_t *forks)
+	t_philo *philos, t_params *params, sem_t **forks)
 {
 	int	i;
 
@@ -41,8 +41,8 @@ static bool	init_philo(
 		philos[i].id = i + 1;
 		philos[i].meals_eaten = 0;
 		philos[i].params = params;
-		philos[i].left_fork = &forks[i];
-		philos[i].right_fork = &forks[(i + 1) % params->philo_count];
+		philos[i].left_fork = forks[i];
+		philos[i].right_fork = forks[(i + 1) % params->philo_count];
 		philos[i].meal_mutex = malloc(sizeof(pthread_mutex_t));
 		if (philos[i].meal_mutex == NULL)
 			return (false);
@@ -62,9 +62,11 @@ static sem_t	**init_sem(int philo_count)
 	forks = malloc(sizeof(sem_t *) * (philo_count + 1));
 	if (forks == NULL)
 		return (NULL);
+	forks[philo_count] = NULL;
 	while (i < philo_count)
 	{
-		forks[i] = sem_open(ft_strjoin("/",ft_itoa(i)), O_CREAT, 0644, 1);
+		forks[i] = sem_open(ft_strjoin("/Fork : ", ft_itoa(i)),
+				O_CREAT, 0644, 1);
 		if (forks[i] == SEM_FAILED)
 			return (NULL);
 		i++;

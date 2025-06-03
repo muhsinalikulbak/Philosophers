@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/03 12:38:35 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/04 00:19:18 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_BONUS_H
 # define PHILOSOPHERS_BONUS_H
-
-
 # include <stdio.h>
 # include <pthread.h>
 # include <stdlib.h>
@@ -21,7 +19,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <semaphore.h>
-#include <fcntl.h>
+# include <fcntl.h>
 
 # define EINVAL 10
 # define STDERR 10
