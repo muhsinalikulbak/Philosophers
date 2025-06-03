@@ -6,7 +6,7 @@
 /*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 02:36:50 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/02 21:33:33 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/03 03:58:02 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	*supervisor_routine(void *arg)
 	{
 		if (check_death(philo) || check_meals(philo))
 			break ;
-		accurate_sleep(1);
+		usleep(500);
 	}
 	return (NULL);
 }
