@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/04 00:21:29 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/04 11:15:33 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 	if (philos == NULL)
 		return (error_manage(STDERR, NULL, NULL));
 	if (!init_params(params, argc, argv))
-		return (error_manage(STDERR, NULL, philos));
+		return (error_manage(STDERR, params, philos));
 	forks = init_sem(params->philo_count);
 	if (forks == NULL)
 		return (error_manage(STDERR, params, philos));

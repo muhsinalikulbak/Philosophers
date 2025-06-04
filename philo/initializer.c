@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/27 17:02:40 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/04 11:15:12 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 	if (philos == NULL)
 		return (error_manage(STDERR, NULL, NULL));
 	if (!init_params(params, argc, argv))
-		return (error_manage(STDERR, NULL, philos));
+		return (error_manage(STDERR, params, philos));
 	forks = init_mutex(params->philo_count);
 	if (forks == NULL)
 		return (error_manage(STDERR, params, philos));
