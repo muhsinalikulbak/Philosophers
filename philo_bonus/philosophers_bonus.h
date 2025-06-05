@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/05 20:29:58 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/05 23:45:02 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_params
 	sem_t	*print_sem;
 	sem_t	*death_sem;
 	sem_t	**forks;
+	char	**fork_names;
+	char	**meal_names;
 	long	start_time;
 	int		philo_count;
 	int		time_to_die;
@@ -78,5 +80,7 @@ void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
 void	*supervisor_routine(void *arg);
 void	free_resources(t_params *params, t_philo *philos);
-void	free_forks(sem_t **forks);
+void	free_forks(sem_t **forks, t_params *params);
+char	**create_sem_names(int philo_count, char *sem_name);
+char	**free_all(char **result);
 #endif

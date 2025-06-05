@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:56:27 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/03 12:20:09 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/05 22:53:09 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,12 @@ void	print_status(t_philo *philo, long event_time, char *status)
 	long	start_time;
 
 	start_time = philo->params->start_time;
-	pthread_mutex_lock(philo->params->death_mutex);
-	sim_end = philo->params->sim_end;
-	pthread_mutex_unlock(philo->params->death_mutex);
-	pthread_mutex_lock(philo->params->print_mutex);
-	if (sim_end)
+	sem_wait(philo->params->print_sem);
+	sem_wait(philo->params->death_sem);
+	if (philo->params->sim_end)
 		printf("%ld %d %s\n", event_time - start_time, philo->id, status);
-	pthread_mutex_unlock(philo->params->print_mutex);
+	sem_post(philo->params->death_sem);
+	sem_post(philo->params->print_sem);
 }
 
 void	accurate_sleep(int ms_time)
@@ -69,4 +68,31 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	concat[len1 + len2] = '\0';
 	return (concat);
+}
+
+char	**create_sem_names(int philo_count, char *sem_name)
+{
+	int		i;
+	char	*temp;
+	char	**names;
+
+	names = malloc(sizeof(char *) * (philo_count + 1));
+	if (names == NULL)
+		return (NULL);
+	names[philo_count] = NULL;
+	i = 0;
+	while (i < philo_count)
+	{
+		temp = ft_itoa(i + 1);
+		if (temp == NULL)
+		{
+			names[i] = NULL;
+			free_all(names);
+			return (NULL);
+		}
+		names[i] = ft_strjoin(sem_name, temp);
+		free(temp);
+		i++;
+	}
+	return (names);
 }
