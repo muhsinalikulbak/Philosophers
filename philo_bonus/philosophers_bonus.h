@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/04 00:19:18 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:22:18 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,5 @@ void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
 void	*supervisor_routine(void *arg);
 void	free_resources(t_params *params, t_philo *philos);
+void	free_forks(sem_t **forks);
 #endif

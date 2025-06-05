@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/04 11:15:33 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/05 15:22:24 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ static sem_t	**init_sem(int philo_count)
 		forks[i] = sem_open(ft_strjoin("/Fork : ", ft_itoa(i)),
 				O_CREAT, 0644, 1);
 		if (forks[i] == SEM_FAILED)
+		{
+			free_forks(forks);
 			return (NULL);
+		}
 		i++;
 	}
 	return (forks);
