@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_resources.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 18:28:54 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/23 17:23:08 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/05 03:29:13 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static	void	destroy_mutex(t_philo *philos, t_params *params)
 			pthread_mutex_destroy(&params->forks[i]);
 			i++;
 		}
+		free(params->forks);
 	}
 }
 
@@ -57,6 +58,4 @@ void	free_resources(t_params *params, t_philo *philos)
 		destroy_mutex(philos, params);
 		free(philos);
 	}
-	if (params != NULL && params->forks != NULL)
-		free(params->forks);
 }

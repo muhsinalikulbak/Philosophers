@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/04 11:15:12 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/05 03:25:07 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ static pthread_mutex_t	*init_mutex(int philo_count)
 	while (i < philo_count)
 	{
 		if (pthread_mutex_init(&forks[i], NULL) != 0)
+		{
+			free(forks);
 			return (NULL);
+		}
 		i++;
 	}
 	return (forks);
@@ -80,6 +83,7 @@ bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 
+	forks = NULL;
 	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
 	if (philos == NULL)
 		return (error_manage(STDERR, NULL, NULL));
