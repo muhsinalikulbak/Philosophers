@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/05 15:22:24 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/05 20:34:07 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ static bool	init_philo(
 		philos[i].params = params;
 		philos[i].left_fork = forks[i];
 		philos[i].right_fork = forks[(i + 1) % params->philo_count];
-		philos[i].meal_mutex = malloc(sizeof(pthread_mutex_t));
-		if (philos[i].meal_mutex == NULL)
-			return (false);
-		if (pthread_mutex_init(philos[i].meal_mutex, NULL) != 0)
+		philos[i].meal_sem = sem_open(ft_strjoin("/meal : ", ft_itoa(i + 1)),
+				O_CREAT, 0644, 1);
+		if (philos[i].meal_sem == SEM_FAILED)
 			return (false);
 		i++;
 	}
@@ -65,7 +64,7 @@ static sem_t	**init_sem(int philo_count)
 	forks[philo_count] = NULL;
 	while (i < philo_count)
 	{
-		forks[i] = sem_open(ft_strjoin("/Fork : ", ft_itoa(i)),
+		forks[i] = sem_open(ft_strjoin("/Fork : ", ft_itoa(i + 1)),
 				O_CREAT, 0644, 1);
 		if (forks[i] == SEM_FAILED)
 		{

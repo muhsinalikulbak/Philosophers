@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/05 15:22:18 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/05 20:29:58 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_params
 
 typedef struct s_philo
 {
-	sem_t		*meal_mutex;
+	sem_t		*meal_sem;
 	sem_t		*left_fork;
 	sem_t		*right_fork;
 	t_params	*params;
