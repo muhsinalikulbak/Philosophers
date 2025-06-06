@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/06 09:13:33 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 10:29:46 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 {
 	t_philo	*philos;
 
-	philos = (t_philo *)ft_calloc(sizeof(t_philo), ft_atoi(argv[1]));
+	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
 	if (philos == NULL)
 		return (error_manage(STDERR, NULL, NULL));
 	if (!init_params(params, argc, argv))
