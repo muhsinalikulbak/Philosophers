@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 00:42:37 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/29 01:02:10 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 10:01:28 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	*philosopher_routine(void *arg)
 	{
 		pthread_mutex_lock(philo->left_fork);
 		print_status(philo, get_current_time(), "has taken a fork");
-		accurate_sleep(philo->params->time_to_die);
+		accurate_sleep(philo->params->time_to_die, philo->params);
 		pthread_mutex_unlock(philo->left_fork);
 		return (NULL);
 	}
@@ -64,6 +64,7 @@ static bool	create_thread(t_philo *philos)
 		}
 		i++;
 	}
+	usleep(150);
 	if (pthread_create(&philos->params->supervisor, NULL,
 			supervisor_routine, philos) != 0)
 	{

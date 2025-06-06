@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:46:00 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/05 02:59:48 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 10:01:04 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ long	ft_atol(const char *str);
 long	get_current_time(void);
 int		ft_atoi(const char *str);
 int		error_manage(int error_code, t_params *param, t_philo *phi);
+int		initializer(t_params *params, t_philo **_philos, int argc, char **argv);
 bool	ft_isdigit(int c);
 bool	argv_checker(int argc, char **argv);
-bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
 bool	start_simulation(t_philo *philos);
 void	take_forks(t_philo *philo);
 void	eat(t_philo *philo);
@@ -74,7 +74,7 @@ void	sleep_philo(t_philo *philo);
 void	thinking(t_philo *philo);
 void	put_forks(t_philo *philo);
 void	print_status(t_philo *philo, long event_time, char *status);
-void	accurate_sleep(int ms_time);
+void	accurate_sleep(int ms_time, t_params *params);
 void	*supervisor_routine(void *arg);
 void	free_resources(t_params *params, t_philo *philos);
 #endif

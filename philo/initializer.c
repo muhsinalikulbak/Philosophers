@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/05 03:25:07 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 08:59:59 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	if (pthread_mutex_init(params->death_mutex, NULL) != 0)
 		return (false);
 	params->sim_end = true;
-	params->start_time = get_current_time();
 	return (true);
 }
 
@@ -78,7 +77,7 @@ static pthread_mutex_t	*init_mutex(int philo_count)
 	return (forks);
 }
 
-bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
+int	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 {
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
@@ -95,6 +94,7 @@ bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 	params->forks = forks;
 	if (!init_philo(philos, params, forks))
 		return (error_manage(STDERR, params, philos));
+	params->start_time = get_current_time();
 	*_philos = philos;
-	return (true);
+	return (EXIT_SUCCESS);
 }

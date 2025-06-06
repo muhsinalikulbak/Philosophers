@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 02:49:18 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/29 00:50:08 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 10:01:54 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	eat(t_philo *philo)
 	philo->meals_eaten++;
 	philo->last_meal_time = get_current_time();
 	pthread_mutex_unlock(philo->meal_mutex);
-	accurate_sleep(philo->params->time_to_eat);
+	accurate_sleep(philo->params->time_to_eat, philo->params);
 }
 
 void	sleep_philo(t_philo *philo)
 {
 	print_status(philo, get_current_time(), "is sleeping");
-	accurate_sleep(philo->params->time_to_sleep);
+	accurate_sleep(philo->params->time_to_sleep, philo->params);
 }
 
 void	thinking(t_philo *philo)

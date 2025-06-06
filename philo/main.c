@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
+/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/05/23 17:23:16 by mkulbak          ###   ########.fr       */
+/*   Updated: 2025/06/06 09:12:31 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 
 	if (!argv_checker(argc, argv))
 		return (error_manage(EINVAL, NULL, NULL));
-	if (!initializer(&params, &philos, argc, argv))
+	if (initializer(&params, &philos, argc, argv))
 		return (EXIT_FAILURE);
 	sim_status = start_simulation(philos);
 	if (sim_status)
