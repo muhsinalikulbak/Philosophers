@@ -6,13 +6,13 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:54:21 by muhsin            #+#    #+#             */
-/*   Updated: 2025/05/25 21:56:10 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 10:27:11 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-static bool	overflow_check(char *str)
+static bool	overflow_check(char *str, int idx)
 {
 	int		i;
 	long	num;
@@ -23,7 +23,14 @@ static bool	overflow_check(char *str)
 	if (ft_strlen(str + i) > 10)
 		return (false);
 	num = ft_atol(str);
-	if (num > 2147483647L || num < -2147483648L || num == 0)
+	if (idx == 5)
+	{
+		if (num >= 0 && num <= 2147483647L)
+			return (true);
+		else
+			return (false);
+	} 
+	if (num > 2147483647L || num == 0)
 		return (false);
 	return (true);
 }
@@ -69,7 +76,7 @@ bool	argv_checker(int argc, char **argv)
 			free(str_num);
 			return (false);
 		}
-		check = (!digit_check(str_num) || !overflow_check(str_num));
+		check = (!digit_check(str_num) || !overflow_check(str_num, i));
 		free(str_num);
 		if (check)
 			return (false);
