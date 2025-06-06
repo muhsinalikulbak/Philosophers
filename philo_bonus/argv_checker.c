@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:54:21 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/06 10:27:11 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 15:09:58 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,29 @@ static bool	digit_check(char *str)
 	return (false);
 }
 
-bool	argv_checker(int argc, char **argv)
+void	argv_checker(int argc, char **argv)
 {
 	int		i;
 	char	*str_num;
 	bool	check;
 
 	if (argc < 5 || argc > 6)
-		return (false);
+		error_manage(EINVAL, NULL, NULL);
 	i = 1;
 	while (i < argc)
 	{
 		str_num = ft_strtrim(argv[i], " ");
 		if (str_num == NULL)
-			return (false);
+			error_manage(EINVAL, NULL, NULL);
 		if (str_num[0] == '\0')
 		{
 			free(str_num);
-			return (false);
+			error_manage(EINVAL, NULL, NULL);
 		}
 		check = (!digit_check(str_num) || !overflow_check(str_num, i));
 		free(str_num);
 		if (check)
-			return (false);
+			error_manage(EINVAL, NULL, NULL);
 		i++;
 	}
-	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/06 10:29:46 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 14:48:01 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static sem_t	**init_sem(int philo_count, t_params *params)
 
 static bool	init_params(t_params *params, int argc, char **argv)
 {
-	set_default(params);
 	params->philo_count = ft_atoi(argv[1]);
 	params->time_to_die = ft_atoi(argv[2]);
 	params->time_to_eat = ft_atoi(argv[3]);
@@ -91,18 +90,18 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	return (true);
 }
 
-int	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
+void	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 {
 	t_philo	*philos;
 
-	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
+	philos = (t_philo *)ft_calloc(ft_atoi(argv[1]), sizeof(t_philo));
+	set_default(params);
 	if (philos == NULL)
-		return (error_manage(STDERR, NULL, NULL));
+		error_manage(STDERR, NULL, NULL);
 	if (!init_params(params, argc, argv))
-		return (error_manage(STDERR, params, philos));
+		error_manage(STDERR, params, philos);
 	if (!init_philo(philos, params))
-		return (error_manage(STDERR, params, philos));
+		error_manage(STDERR, params, philos);
 	params->start_time = get_current_time();
 	*_philos = philos;
-	return (EXIT_SUCCESS);
 }

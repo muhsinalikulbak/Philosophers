@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:57:56 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/06 09:13:49 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 14:07:20 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_perror(char *message)
 	write_colored(GREEN, " ----\n");
 }
 
-int	error_manage(int error_code, t_params *param, t_philo *phi)
+void	error_manage(int error_code, t_params *param, t_philo *phi)
 {
 	if (error_code == EINVAL)
 		ft_perror("Invalid Argument!");
@@ -35,5 +35,5 @@ int	error_manage(int error_code, t_params *param, t_philo *phi)
 		ft_perror("Error!");
 		free_resources(param, phi);
 	}
-	return (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }

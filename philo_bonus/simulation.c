@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 21:54:08 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/06 14:25:18 by muhsin           ###   ########.fr       */
+/*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
+/*   Updated: 2025/06/06 13:37:38 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	main(int argc, char **argv)
+bool	start_simulation(t_params *params, t_philo *philos)
 {
-	t_params	params;
-	t_philo		*philos;
-	bool		sim_status;
+	int	i;
 
-	argv_checker(argc, argv);
-	initializer(&params, &philos, argc, argv);
-	sim_status = start_simulation(philos);
-	if (sim_status)
-		free_resources(&params, philos);
-	exit(EXIT_SUCCESS);
+	i = 0;
+	while (i < params->philo_count)
+	{
+		/* code */
+	}
+	
 }

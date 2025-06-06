@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/06 09:14:34 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 14:59:09 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,20 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(size_t count, size_t size);
-bool	ft_isdigit(int c);
+char	**create_sem_names(int philo_count, char *sem_name);
+char	**free_all(char **double_str);
 long	ft_atol(const char *str);
-int		ft_atoi(const char *str);
-int		error_manage(int error_code, t_params *param, t_philo *phi);
-int		initializer(t_params *params, t_philo **_philos, int argc, char **argv);
 long	get_current_time(void);
-bool	argv_checker(int argc, char **argv);
+int		ft_atoi(const char *str);
+bool	ft_isdigit(int c);
 void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
 void	free_resources(t_params *params, t_philo *philos);
-char	**create_sem_names(int philo_count, char *sem_name);
-char	**free_all(char **double_str);
+void	argv_checker(int argc, char **argv);
 void	free_forks(sem_t **forks, t_params *params);
+void	error_manage(int error_code, t_params *param, t_philo *phi);
+void	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
+
 bool	start_simulation(t_philo *philos); // ***
 void	take_forks(t_philo *philo); // ***
 void	eat(t_philo *philo); // ***
