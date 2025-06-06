@@ -6,11 +6,20 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/05 23:45:50 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 09:13:33 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
+
+static void	set_default(t_params *params)
+{
+	params->forks = NULL;
+    params->fork_names = NULL;
+    params->meal_names = NULL;
+    params->death_sem = SEM_FAILED;
+    params->print_sem = SEM_FAILED;
+}
 
 static bool	init_philo(t_philo *philos, t_params *params)
 {
@@ -40,7 +49,7 @@ static sem_t	**init_sem(int philo_count, t_params *params)
 	int		i;
 
 	i = 0;
-	forks = malloc(sizeof(sem_t *) * philo_count);
+	forks = (sem_t **)ft_calloc(philo_count, sizeof(sem_t *));
 	if (forks == NULL)
 		return (NULL);
 	while (i < philo_count)
@@ -49,6 +58,7 @@ static sem_t	**init_sem(int philo_count, t_params *params)
 		if (forks[i] == SEM_FAILED)
 		{
 			free_forks(forks, params);
+			params->forks = NULL;
 			return (NULL);
 		}
 		i++;
@@ -58,6 +68,7 @@ static sem_t	**init_sem(int philo_count, t_params *params)
 
 static bool	init_params(t_params *params, int argc, char **argv)
 {
+	set_default(params);
 	params->philo_count = ft_atoi(argv[1]);
 	params->time_to_die = ft_atoi(argv[2]);
 	params->time_to_eat = ft_atoi(argv[3]);
@@ -69,27 +80,29 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	params->print_sem = sem_open("/print", O_CREAT, 0644, 1);
 	if (params->death_sem == SEM_FAILED || params->print_sem == SEM_FAILED)
 		return (false);
-	params->fork_names = create_sem_names(params->philo_count, "/fork : ");
-	params->meal_names = create_sem_names(params->philo_count, "/meal : ");
+	params->fork_names = create_sem_names(params->philo_count, "/fork_");
+	params->meal_names = create_sem_names(params->philo_count, "/meal_");
+	if (params->fork_names == NULL || params->meal_names == NULL)
+		return (false);
 	params->forks = init_sem(params->philo_count, params);
 	if (params->forks == NULL)
 		return (false);
 	params->sim_end = true;
-	params->start_time = get_current_time();
 	return (true);
 }
 
-bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
+int	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 {
 	t_philo	*philos;
 
-	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
+	philos = (t_philo *)ft_calloc(sizeof(t_philo), ft_atoi(argv[1]));
 	if (philos == NULL)
 		return (error_manage(STDERR, NULL, NULL));
 	if (!init_params(params, argc, argv))
 		return (error_manage(STDERR, params, philos));
 	if (!init_philo(philos, params))
 		return (error_manage(STDERR, params, philos));
+	params->start_time = get_current_time();
 	*_philos = philos;
-	return (true);
+	return (EXIT_SUCCESS);
 }

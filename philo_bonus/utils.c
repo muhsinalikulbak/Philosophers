@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:56:27 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/05 22:53:09 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 08:03:38 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	len1 = 0;
 	len2 = 0;
-	while (s1[len1])
+	while (s1 != NULL && s1[len1])
 	{
 		concat[len1] = s1[len1];
 		len1++;
 	}
-	while (s2[len2])
+	while (s2 != NULL && s2[len2])
 	{
 		concat[len1 + len2] = s2[len2];
 		len2++;
@@ -76,23 +76,22 @@ char	**create_sem_names(int philo_count, char *sem_name)
 	char	*temp;
 	char	**names;
 
-	names = malloc(sizeof(char *) * (philo_count + 1));
+	names = (char **)ft_calloc(philo_count + 1, sizeof(char *));
 	if (names == NULL)
 		return (NULL);
-	names[philo_count] = NULL;
-	i = 0;
-	while (i < philo_count)
+	i = -1;
+	while (++i < philo_count)
 	{
 		temp = ft_itoa(i + 1);
-		if (temp == NULL)
+		names[i] = ft_strjoin(sem_name, temp);
+		if (temp == NULL || names[i] == NULL)
 		{
-			names[i] = NULL;
 			free_all(names);
+			if (temp != NULL)
+				free(temp);
 			return (NULL);
 		}
-		names[i] = ft_strjoin(sem_name, temp);
 		free(temp);
-		i++;
 	}
 	return (names);
 }

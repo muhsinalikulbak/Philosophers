@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/05 23:45:02 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/06 09:14:34 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 
 # define EINVAL 10
-# define STDERR 10
+# define STDERR 11
 
 # define RESET   "\033[0m"
 # define RED     "\033[31m"
@@ -51,8 +51,8 @@ typedef struct s_philo
 	sem_t		*left_fork;
 	sem_t		*right_fork;
 	t_params	*params;
-	int			id;
 	long		last_meal_time;
+	int			id;
 	int			meals_eaten;
 }			t_philo;
 
@@ -63,24 +63,24 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	*ft_calloc(size_t count, size_t size);
+bool	ft_isdigit(int c);
 long	ft_atol(const char *str);
-long	get_current_time(void);
 int		ft_atoi(const char *str);
 int		error_manage(int error_code, t_params *param, t_philo *phi);
-bool	ft_isdigit(int c);
+int		initializer(t_params *params, t_philo **_philos, int argc, char **argv);
+long	get_current_time(void);
 bool	argv_checker(int argc, char **argv);
-bool	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
-bool	start_simulation(t_philo *philos);
-void	take_forks(t_philo *philo);
-void	eat(t_philo *philo);
-void	sleep_philo(t_philo *philo);
-void	thinking(t_philo *philo);
-void	put_forks(t_philo *philo);
 void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
-void	*supervisor_routine(void *arg);
 void	free_resources(t_params *params, t_philo *philos);
-void	free_forks(sem_t **forks, t_params *params);
 char	**create_sem_names(int philo_count, char *sem_name);
-char	**free_all(char **result);
+char	**free_all(char **double_str);
+void	free_forks(sem_t **forks, t_params *params);
+bool	start_simulation(t_philo *philos); // ***
+void	take_forks(t_philo *philo); // ***
+void	eat(t_philo *philo); // ***
+void	sleep_philo(t_philo *philo); // ***
+void	thinking(t_philo *philo); // ***
+void	put_forks(t_philo *philo); // ***
+void	*supervisor_routine(void *arg); // ***
 #endif
