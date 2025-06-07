@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/06 09:59:34 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:50:39 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	overflow_check(char *str, int idx)
 			return (true);
 		else
 			return (false);
-	} 
+	}
 	if (num > 2147483647L || num == 0)
 		return (false);
 	return (true);

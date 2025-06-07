@@ -6,11 +6,32 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/06 08:59:59 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:51:03 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+static pthread_mutex_t	*init_mutex(int philo_count)
+{
+	pthread_mutex_t	*forks;
+	int				i;
+
+	i = 0;
+	forks = malloc(sizeof(pthread_mutex_t) * philo_count);
+	if (forks == NULL)
+		return (NULL);
+	while (i < philo_count)
+	{
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
+		{
+			free(forks);
+			return (NULL);
+		}
+		i++;
+	}
+	return (forks);
+}
 
 static bool	init_params(t_params *params, int argc, char **argv)
 {
@@ -28,6 +49,9 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	if (pthread_mutex_init(params->print_mutex, NULL) != 0)
 		return (false);
 	if (pthread_mutex_init(params->death_mutex, NULL) != 0)
+		return (false);
+	params->forks = init_mutex(params->philo_count);
+	if (params->forks == NULL)
 		return (false);
 	params->sim_end = true;
 	return (true);
@@ -56,43 +80,17 @@ static bool	init_philo(
 	return (true);
 }
 
-static pthread_mutex_t	*init_mutex(int philo_count)
-{
-	pthread_mutex_t	*forks;
-	int				i;
-
-	i = 0;
-	forks = malloc(sizeof(pthread_mutex_t) * philo_count);
-	if (forks == NULL)
-		return (NULL);
-	while (i < philo_count)
-	{
-		if (pthread_mutex_init(&forks[i], NULL) != 0)
-		{
-			free(forks);
-			return (NULL);
-		}
-		i++;
-	}
-	return (forks);
-}
-
 int	initializer(t_params *params, t_philo **_philos, int argc, char **argv)
 {
-	pthread_mutex_t	*forks;
 	t_philo			*philos;
 
-	forks = NULL;
+	params->forks = NULL;
 	philos = malloc(sizeof(t_philo) * ft_atoi(argv[1]));
 	if (philos == NULL)
 		return (error_manage(STDERR, NULL, NULL));
 	if (!init_params(params, argc, argv))
 		return (error_manage(STDERR, params, philos));
-	forks = init_mutex(params->philo_count);
-	if (forks == NULL)
-		return (error_manage(STDERR, params, philos));
-	params->forks = forks;
-	if (!init_philo(philos, params, forks))
+	if (!init_philo(philos, params, params->forks))
 		return (error_manage(STDERR, params, philos));
 	params->start_time = get_current_time();
 	*_philos = philos;

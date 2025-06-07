@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/06 14:59:09 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:42:59 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ typedef struct s_philo
 	sem_t		*left_fork;
 	sem_t		*right_fork;
 	t_params	*params;
+	pid_t		pid;
 	long		last_meal_time;
 	int			id;
 	int			meals_eaten;
+	bool		is_alive;
 }			t_philo;
 
 size_t	ft_strlen(const char *s);

@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/06 14:48:01 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/07 21:42:49 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ static bool	init_philo(t_philo *philos, t_params *params)
 	{
 		philos[i].id = i + 1;
 		philos[i].meals_eaten = 0;
+		philos[i].pid = -1;
+		philos[i].meals_eaten = 0;
+		philos[i].is_alive = true;
 		philos[i].params = params;
 		philos[i].left_fork = forks[i];
 		philos[i].right_fork = forks[(i + 1) % params->philo_count];
