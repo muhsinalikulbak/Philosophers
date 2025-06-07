@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/07 21:42:49 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/07 23:36:34 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	params->forks = init_sem(params->philo_count, params);
 	if (params->forks == NULL)
 		return (false);
-	params->sim_end = true;
 	return (true);
 }
 

@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:56:27 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/06 15:00:23 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/07 23:39:36 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ long	get_current_time(void)
 
 void	print_status(t_philo *philo, long event_time, char *status)
 {
-	bool	sim_end;
 	long	start_time;
 
 	start_time = philo->params->start_time;
 	sem_wait(philo->params->print_sem);
-	sem_wait(philo->params->death_sem);
-	if (philo->params->sim_end)
+	sem_wait(philo->meal_sem);
+	if (philo->is_alive)
 		printf("%ld %d %s\n", event_time - start_time, philo->id, status);
-	sem_post(philo->params->death_sem);
+	sem_post(philo->meal_sem);
 	sem_post(philo->params->print_sem);
 }
 
@@ -40,7 +39,7 @@ void	accurate_sleep(int ms_time)
 
 	start_time = get_current_time();
 	while ((get_current_time() - start_time) < ms_time)
-		usleep(50);
+		usleep(100);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

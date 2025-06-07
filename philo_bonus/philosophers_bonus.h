@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/07 21:42:59 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/08 02:02:08 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include <stdbool.h>
 # include <semaphore.h>
 # include <fcntl.h>
-
+# include <sys/wait.h>
+# include <signal.h>
 # define EINVAL 10
 # define STDERR 11
 
@@ -42,11 +43,11 @@ typedef struct s_params
 	int		time_to_eat;
 	int		time_to_sleep;
 	int		must_eat;
-	bool	sim_end;
 }				t_params;
 
 typedef struct s_philo
 {
+	pthread_t	monitor;
 	sem_t		*meal_sem;
 	sem_t		*left_fork;
 	sem_t		*right_fork;
@@ -78,12 +79,11 @@ void	argv_checker(int argc, char **argv);
 void	free_forks(sem_t **forks, t_params *params);
 void	error_manage(int error_code, t_params *param, t_philo *phi);
 void	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
-
-bool	start_simulation(t_philo *philos); // ***
-void	take_forks(t_philo *philo); // ***
-void	eat(t_philo *philo); // ***
-void	sleep_philo(t_philo *philo); // ***
-void	thinking(t_philo *philo); // ***
-void	put_forks(t_philo *philo); // ***
-void	*supervisor_routine(void *arg); // ***
+void	start_simulation(t_params *params, t_philo *philos);
+void	take_forks(t_philo *philo);
+void	eat(t_philo *philo);
+void	sleep_philo(t_philo *philo);
+void	thinking(t_philo *philo);
+void	put_forks(t_philo *philo);
+void	kill_philosopherse(t_philo *philos, pid_t death_pid);
 #endif

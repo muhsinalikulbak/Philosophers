@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   simulation_helper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/25 21:54:08 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/08 02:10:17 by muhsin           ###   ########.fr       */
+/*   Created: 2025/06/08 01:59:12 by muhsin            #+#    #+#             */
+/*   Updated: 2025/06/08 02:08:35 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	main(int argc, char **argv)
+void	kill_philosopherse(t_philo *philos, pid_t death_pid)
 {
-	t_params	params;
-	t_philo		*philos;
+	int	i;
 
-	argv_checker(argc, argv);
-	initializer(&params, &philos, argc, argv);
-	start_simulation(&params, philos);
-	free_resources(&params, philos);
+	i = 0;
+	while (i < philos->params->philo_count)
+	{
+		if (philos[i].pid != death_pid)
+			kill(philos[i].pid, SIGKILL);
+		i++;
+	}
+	while (wait(NULL) > 0)
+		;
 }

@@ -6,24 +6,92 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/07 21:41:05 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/08 02:12:54 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-static void	philosopher_routine(t_philo philo)
+
+static bool	is_sim_ended(t_philo *philo)
 {
-	
-	take_forks(philo);
-	eat(philo);
-	put_forks(philo);
-	sleep_philo(philo);
-	thinking(philo);
+	bool	status;
+
+	sem_wait(philo->meal_sem);
+	status = philo->is_alive;
+	sem_post(philo->meal_sem);
+	return (status);
+}
+
+static void	*monitor(void *arg)
+{
+	t_philo	*philo;
+	long	curr_time;
+	int		time_to_die;
+
+	philo = (t_philo *)arg;
+	time_to_die = philo->params->time_to_die;
+	while (true)
+	{
+		curr_time = get_current_time();
+		if (curr_time - philo->last_meal_time > time_to_die)
+		{
+			sem_wait(philo->meal_sem);
+			philo->is_alive = false;
+			sem_post(philo->meal_sem);
+			break ;
+		}
+	}
 	return (NULL);
 }
 
-bool	start_simulation(t_params *params, t_philo *philos)
+static void	philosopher_routine(t_philo *philo)
+{
+	int			must_eat;
+
+	must_eat = philo->params->must_eat;
+	sem_wait(philo->meal_sem);
+	philo->last_meal_time = get_current_time();
+	sem_post(philo->meal_sem);
+	pthread_create(&philo->monitor, NULL, monitor, philo);
+	while (is_sim_ended(philo))
+	{
+		if (must_eat != -1 && philo->meals_eaten >= must_eat)
+			exit(42);
+		take_forks(philo);
+		eat(philo);
+		put_forks(philo);
+		sleep_philo(philo);
+		thinking(philo);
+	}
+}
+
+static void	wait_philosopher(t_philo *philos)
+{
+	int		status;
+	int		meal_count;
+	pid_t	death_pid;
+
+	meal_count = 0;
+	while (true)
+	{
+		death_pid = waitpid(-1, &status, WNOHANG);
+		if (death_pid > 0)
+		{
+			if (WIFEXITED(status) && WEXITSTATUS(status) ==  42)
+			{
+				meal_count++;
+				if (meal_count == philos->params->philo_count)
+					return ;
+			}
+			else
+				kill_philosopherse(philos, death_pid);
+		}
+		usleep(1000);
+	}
+}
+
+void	start_simulation(t_params *params, t_philo *philos)
 {
 	int		i;
 	pid_t	pid;
@@ -34,15 +102,11 @@ bool	start_simulation(t_params *params, t_philo *philos)
 		pid = fork();
 		if (pid == 0)
 		{
-			philosopher_routine(philos[i]);
-			exit(0);
+			philosopher_routine(&philos[i]);
+			exit(EXIT_SUCCESS);
 		}
 		philos[i].pid = pid;
 		i++;
 	}
-	// WAİTPİD İle ölüm kontrolü ve sigkill ile bitirme
-	return (true);
+	wait_philosopher(philos);
 }
-
-// Her process'i kontrol eden bir thread olsun
-// Bu thread ölümü kontrol edecek.
