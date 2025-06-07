@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 23:45:57 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/06 09:12:31 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/08 02:10:54 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,4 @@ int	main(int argc, char **argv)
 	sim_status = start_simulation(philos);
 	if (sim_status)
 		free_resources(&params, philos);
-	return (EXIT_SUCCESS);
 }
