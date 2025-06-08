@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/08 13:03:10 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/08 14:43:47 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,10 @@ static void	wait_philosopher(t_philo *philos)
 					return ;
 			}
 			else
+			{
 				kill_philosopherse(philos, death_pid);
+				return ;
+			}
 		}
 		usleep(1000);
 	}
