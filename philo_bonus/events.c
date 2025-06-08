@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 02:49:18 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/07 22:45:37 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/08 12:25:28 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ void	eat(t_philo *philo)
 {
 	print_status(philo, get_current_time(), "is eating");
 	accurate_sleep(philo->params->time_to_eat);
+	sem_wait(philo->meal_sem);
+	philo->last_meal_time = get_current_time();
+	sem_post(philo->meal_sem);
 	philo->meals_eaten++;
+
 }
 
 void	sleep_philo(t_philo *philo)

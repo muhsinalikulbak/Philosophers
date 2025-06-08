@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 01:59:12 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/08 02:08:35 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/08 12:42:18 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,4 @@ void	kill_philosopherse(t_philo *philos, pid_t death_pid)
 			kill(philos[i].pid, SIGKILL);
 		i++;
 	}
-	while (wait(NULL) > 0)
-		;
 }

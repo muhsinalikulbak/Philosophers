@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/08 02:12:54 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/08 13:03:10 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,25 @@ static void	*monitor(void *arg)
 	t_philo	*philo;
 	long	curr_time;
 	int		time_to_die;
+	long	las_meal_time;
 
 	philo = (t_philo *)arg;
 	time_to_die = philo->params->time_to_die;
 	while (true)
 	{
 		curr_time = get_current_time();
-		if (curr_time - philo->last_meal_time > time_to_die)
+		sem_wait(philo->meal_sem);
+		las_meal_time = philo->last_meal_time;
+		sem_post(philo->meal_sem);
+		if (curr_time - las_meal_time > time_to_die)
 		{
 			sem_wait(philo->meal_sem);
 			philo->is_alive = false;
 			sem_post(philo->meal_sem);
-			break ;
+			print_status(philo, curr_time, "died");
+			exit(EXIT_FAILURE);
 		}
+		usleep(1000);
 	}
 	return (NULL);
 }
@@ -109,4 +115,6 @@ void	start_simulation(t_params *params, t_philo *philos)
 		i++;
 	}
 	wait_philosopher(philos);
+	while (wait(NULL) > 0)
+		;
 }
