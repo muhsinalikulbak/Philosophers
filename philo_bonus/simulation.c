@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/10 01:54:03 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/10 02:24:31 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	*monitor(void *arg)
 		sem_post(philo->meal_sem);
 		if (curr_time - las_meal_time > time_to_die)
 		{
+			sem_wait(philo->params->death_sem);
 			print_status(philo, curr_time, "died");
 			sem_wait(philo->meal_sem);
 			philo->is_alive = false;
@@ -89,9 +90,10 @@ static void	wait_philosopher(t_philo *philos)
 				if (meal_count == philos->params->philo_count)
 					return ;
 			}
-			else
+			else if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_FAILURE)
 			{
 				kill_philosopherse(philos, death_pid);
+				sem_post(philos->params->death_sem);
 				return ;
 			}
 		}
