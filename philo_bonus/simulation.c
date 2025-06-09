@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/10 02:24:31 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/10 02:31:05 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static void	wait_philosopher(t_philo *philos)
 			}
 			else if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_FAILURE)
 			{
-				kill_philosopherse(philos, death_pid);
+				kill_philosophers(philos, death_pid);
 				sem_post(philos->params->death_sem);
 				return ;
 			}

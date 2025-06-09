@@ -6,13 +6,13 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 01:59:12 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/08 12:42:18 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/10 02:30:57 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-void	kill_philosopherse(t_philo *philos, pid_t death_pid)
+void	kill_philosophers(t_philo *philos, pid_t death_pid)
 {
 	int	i;
 

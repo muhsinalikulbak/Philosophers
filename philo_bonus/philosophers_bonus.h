@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/10 01:35:08 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/10 02:31:08 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ void	eat(t_philo *philo);
 void	sleep_philo(t_philo *philo);
 void	thinking(t_philo *philo);
 void	put_forks(t_philo *philo);
-void	kill_philosopherse(t_philo *philos, pid_t death_pid);
+void	kill_philosophers(t_philo *philos, pid_t death_pid);
 #endif
