@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:56:27 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/07 23:39:36 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/10 01:35:01 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	accurate_sleep(int ms_time)
 		usleep(100);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+static char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		len1;
 	int		len2;

@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/07 23:36:34 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/10 01:37:24 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	set_default(t_params *params)
 {
 	params->forks = NULL;
-    params->fork_names = NULL;
-    params->meal_names = NULL;
-    params->death_sem = SEM_FAILED;
-    params->print_sem = SEM_FAILED;
+	params->fork_names = NULL;
+	params->meal_names = NULL;
+	params->death_sem = SEM_FAILED;
+	params->print_sem = SEM_FAILED;
 }
 
 static bool	init_philo(t_philo *philos, t_params *params)

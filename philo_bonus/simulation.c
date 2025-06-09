@@ -6,12 +6,11 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/08 14:43:47 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/10 01:39:00 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
 
 static bool	is_sim_ended(t_philo *philo)
 {
@@ -84,7 +83,7 @@ static void	wait_philosopher(t_philo *philos)
 		death_pid = waitpid(-1, &status, WNOHANG);
 		if (death_pid > 0)
 		{
-			if (WIFEXITED(status) && WEXITSTATUS(status) ==  42)
+			if (WIFEXITED(status) && WEXITSTATUS(status) == 42)
 			{
 				meal_count++;
 				if (meal_count == philos->params->philo_count)
