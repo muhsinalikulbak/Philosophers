@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/10 02:31:08 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/11 01:45:14 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ typedef struct s_params
 {
 	sem_t	*print_sem;
 	sem_t	*death_sem;
-	sem_t	**forks;
-	char	**fork_names;
+	sem_t	*forks;
 	char	**meal_names;
 	long	start_time;
 	int		philo_count;
@@ -49,8 +48,6 @@ typedef struct s_philo
 {
 	pthread_t	monitor;
 	sem_t		*meal_sem;
-	sem_t		*left_fork;
-	sem_t		*right_fork;
 	t_params	*params;
 	pid_t		pid;
 	long		last_meal_time;
@@ -75,7 +72,6 @@ void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
 void	free_resources(t_params *params, t_philo *philos);
 void	argv_checker(int argc, char **argv);
-void	free_forks(sem_t **forks, t_params *params);
 void	error_manage(int error_code, t_params *param, t_philo *phi);
 void	initializer(t_params *params, t_philo **_philos, int argc, char **argv);
 void	start_simulation(t_params *params, t_philo *philos);

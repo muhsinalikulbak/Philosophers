@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 02:49:18 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/10 01:37:47 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/11 01:49:32 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,8 @@
 
 void	take_forks(t_philo *philo)
 {
-	if (philo->id % 2 == 0)
-	{
-		sem_wait(philo->right_fork);
-		print_status(philo, get_current_time(), "has taken a fork");
-		sem_wait(philo->left_fork);
-		print_status(philo, get_current_time(), "has taken a fork");
-	}
-	else
-	{
-		sem_wait(philo->left_fork);
-		print_status(philo, get_current_time(), "has taken a fork");
-		sem_wait(philo->right_fork);
-		print_status(philo, get_current_time(), "has taken a fork");
-	}
+	sem_wait(philo->params->forks);
+	sem_wait(philo->params->forks);	
 }
 
 void	eat(t_philo *philo)
@@ -53,6 +41,6 @@ void	thinking(t_philo *philo)
 
 void	put_forks(t_philo *philo)
 {
-	sem_post(philo->left_fork);
-	sem_post(philo->right_fork);
+	sem_post(philo->params->forks);
+	sem_post(philo->params->forks);
 }
