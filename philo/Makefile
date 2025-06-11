@@ -6,11 +6,11 @@
 #    By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 01:36:07 by mkulbak           #+#    #+#              #
-#    Updated: 2025/05/28 01:36:55 by muhsin           ###   ########.fr        #
+#    Updated: 2025/06/11 19:47:20 by muhsin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosophers
+NAME = philo
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread 
