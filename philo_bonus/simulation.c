@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/10 02:31:05 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/11 03:01:02 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	*monitor(void *arg)
 
 	philo = (t_philo *)arg;
 	time_to_die = philo->params->time_to_die;
-	while (true)
+	while (is_sim_ended(philo))
 	{
 		curr_time = get_current_time();
 		sem_wait(philo->meal_sem);
@@ -63,7 +63,13 @@ static void	philosopher_routine(t_philo *philo)
 	while (is_sim_ended(philo))
 	{
 		if (must_eat != -1 && philo->meals_eaten >= must_eat)
+		{
+			sem_wait(philo->meal_sem);
+			philo->is_alive = false;
+			sem_post(philo->meal_sem);
+			pthread_join(philo->monitor, NULL);
 			exit(42);
+		}
 		take_forks(philo);
 		eat(philo);
 		put_forks(philo);

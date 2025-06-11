@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 02:49:18 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/11 01:49:32 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/11 02:37:25 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	take_forks(t_philo *philo)
 {
 	sem_wait(philo->params->forks);
-	sem_wait(philo->params->forks);	
+	sem_wait(philo->params->forks);
 }
 
 void	eat(t_philo *philo)
