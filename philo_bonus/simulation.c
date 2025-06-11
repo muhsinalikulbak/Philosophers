@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/11 03:01:02 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/11 23:23:17 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	philosopher_routine(t_philo *philo)
 	}
 }
 
-static void	wait_philosopher(t_philo *philos)
+static void	status_detector(t_philo *philos)
 {
 	int		status;
 	int		meal_count;
@@ -124,7 +124,7 @@ void	start_simulation(t_params *params, t_philo *philos)
 		philos[i].pid = pid;
 		i++;
 	}
-	wait_philosopher(philos);
+	status_detector(philos);
 	while (wait(NULL) > 0)
 		;
 }
