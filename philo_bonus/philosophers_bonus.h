@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/11 01:45:14 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/13 13:57:27 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ long	ft_atol(const char *str);
 long	get_current_time(void);
 int		ft_atoi(const char *str);
 bool	ft_isdigit(int c);
+bool	is_sim_ended(t_philo *philo);
 void	print_status(t_philo *philo, long event_time, char *status);
 void	accurate_sleep(int ms_time);
 void	free_resources(t_params *params, t_philo *philos);
@@ -80,5 +81,6 @@ void	eat(t_philo *philo);
 void	sleep_philo(t_philo *philo);
 void	thinking(t_philo *philo);
 void	put_forks(t_philo *philo);
+void	ate_enough(t_philo *philo);
 void	kill_philosophers(t_philo *philos, pid_t death_pid);
 #endif

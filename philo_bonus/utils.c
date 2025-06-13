@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:56:27 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/10 01:35:01 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/13 13:38:54 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ void	print_status(t_philo *philo, long event_time, char *status)
 	sem_wait(philo->meal_sem);
 	if (philo->is_alive)
 		printf("%ld %d %s\n", event_time - start_time, philo->id, status);
+	else
+	{
+		printf("%ld %d %s\n", event_time - start_time, philo->id, status);
+		sem_post(philo->meal_sem);
+		return ;
+	}
 	sem_post(philo->meal_sem);
 	sem_post(philo->params->print_sem);
 }

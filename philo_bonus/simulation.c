@@ -6,13 +6,13 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 13:32:20 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/11 23:23:17 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/13 14:20:27 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-static bool	is_sim_ended(t_philo *philo)
+bool	is_sim_ended(t_philo *philo)
 {
 	bool	status;
 
@@ -40,11 +40,11 @@ static void	*monitor(void *arg)
 		if (curr_time - las_meal_time > time_to_die)
 		{
 			sem_wait(philo->params->death_sem);
-			print_status(philo, curr_time, "died");
 			sem_wait(philo->meal_sem);
 			philo->is_alive = false;
 			sem_post(philo->meal_sem);
-			exit(EXIT_FAILURE);
+			print_status(philo, curr_time, "died");
+			return (NULL);
 		}
 		usleep(1000);
 	}
@@ -60,22 +60,19 @@ static void	philosopher_routine(t_philo *philo)
 	philo->last_meal_time = get_current_time();
 	sem_post(philo->meal_sem);
 	pthread_create(&philo->monitor, NULL, monitor, philo);
+	pthread_detach(philo->monitor);
 	while (is_sim_ended(philo))
 	{
 		if (must_eat != -1 && philo->meals_eaten >= must_eat)
-		{
-			sem_wait(philo->meal_sem);
-			philo->is_alive = false;
-			sem_post(philo->meal_sem);
-			pthread_join(philo->monitor, NULL);
-			exit(42);
-		}
+			ate_enough(philo);
 		take_forks(philo);
 		eat(philo);
 		put_forks(philo);
 		sleep_philo(philo);
 		thinking(philo);
 	}
+	free_resources(philo->params, (philo - (philo->id - 1)));
+	exit(EXIT_FAILURE);
 }
 
 static void	status_detector(t_philo *philos)
@@ -92,14 +89,14 @@ static void	status_detector(t_philo *philos)
 		{
 			if (WIFEXITED(status) && WEXITSTATUS(status) == 42)
 			{
-				meal_count++;
-				if (meal_count == philos->params->philo_count)
+				if (++meal_count == philos->params->philo_count)
 					return ;
 			}
 			else if (WIFEXITED(status) && WEXITSTATUS(status) == EXIT_FAILURE)
 			{
 				kill_philosophers(philos, death_pid);
 				sem_post(philos->params->death_sem);
+				sem_post(philos->params->print_sem);
 				return ;
 			}
 		}

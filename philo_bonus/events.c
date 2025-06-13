@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 02:49:18 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/11 21:02:50 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/13 13:51:10 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	take_forks(t_philo *philo)
 {
+	if (!is_sim_ended(philo))
+		return ;
 	sem_wait(philo->params->forks);
 	print_status(philo, get_current_time(), "has taken a fork");
 	sem_wait(philo->params->forks);
@@ -22,6 +24,8 @@ void	take_forks(t_philo *philo)
 
 void	eat(t_philo *philo)
 {
+	if (!is_sim_ended(philo))
+		return ;
 	print_status(philo, get_current_time(), "is eating");
 	accurate_sleep(philo->params->time_to_eat);
 	sem_wait(philo->meal_sem);
@@ -32,12 +36,16 @@ void	eat(t_philo *philo)
 
 void	sleep_philo(t_philo *philo)
 {
+	if (!is_sim_ended(philo))
+		return ;
 	print_status(philo, get_current_time(), "is sleeping");
 	accurate_sleep(philo->params->time_to_sleep);
 }
 
 void	thinking(t_philo *philo)
 {
+	if (!is_sim_ended(philo))
+		return ;
 	print_status(philo, get_current_time(), "is thinking");
 }
 
