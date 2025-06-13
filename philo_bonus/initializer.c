@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/11 01:51:39 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/13 21:18:46 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ static bool	init_params(t_params *params, int argc, char **argv)
 	params->must_eat = -1;
 	if (argc == 6)
 		params->must_eat = ft_atoi(argv[5]);
+	params->meal_names = create_sem_names(params->philo_count, "/meal_");
+	if (params->meal_names == NULL)
+		return (false);
+	destroy_semafor(params);
 	params->death_sem = sem_open("/death", O_CREAT, 0644, 1);
 	params->print_sem = sem_open("/print", O_CREAT, 0644, 1);
 	params->forks = sem_open("/forks", O_CREAT, 0644, params->philo_count);
 	if (params->death_sem == SEM_FAILED || params->print_sem == SEM_FAILED)
-		return (false);
-	params->meal_names = create_sem_names(params->philo_count, "/meal_");
-	if (params->meal_names == NULL)
 		return (false);
 	return (true);
 }

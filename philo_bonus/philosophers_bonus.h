@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_bonus.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:55:09 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/13 13:57:27 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/13 21:13:12 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,5 @@ void	thinking(t_philo *philo);
 void	put_forks(t_philo *philo);
 void	ate_enough(t_philo *philo);
 void	kill_philosophers(t_philo *philos, pid_t death_pid);
+void	destroy_semafor(t_params *params);
 #endif

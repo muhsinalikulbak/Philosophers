@@ -3,14 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   simulation_helper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/08 01:59:12 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/13 14:18:32 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/13 21:12:05 by mkulbak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
+
+void	destroy_semafor(t_params *params)
+{
+	int	i;
+
+	i = 0;
+	while (i < params->philo_count)
+	{
+		sem_unlink(params->meal_names[i]);
+		i++;
+	}
+	sem_unlink("/print");
+	sem_unlink("/death");
+	sem_unlink("/forks");
+}
 
 void	ate_enough(t_philo *philo)
 {
