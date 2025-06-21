@@ -54,7 +54,7 @@ static bool	digit_check(char *str)
 			return (false);
 		i++;
 	}
-	if ((ft_strlen(str) != 1 && plus == 1 && str[0] == '+') || plus == 0)
+	if (plus == 0 || (plus == 1 && str[0] == '+' && ft_strlen(str) > 1))
 		return (true);
 	return (false);
 }
