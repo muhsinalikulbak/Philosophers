@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkulbak <mkulbak@student.42.fr>            +#+  +:+       +#+         #
+#    By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/31 18:46:30 by mkulbak           #+#    #+#              #
-#    Updated: 2025/06/13 21:27:32 by mkulbak          ###   ########.fr        #
+#    Updated: 2025/06/21 15:27:30 by muhsin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo_bonus
 
 CC = cc
-CFLAGS = -pthread 
+CFLAGS = -Wall -Wextra -Werror -pthread 
 
 SRCS = main.c argv_checker.c utils.c   error_manage.c initializer.c\
 	  libft_utils1.c libft_utils2.c free_resources.c events.c simulation.c\

@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:30:40 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/07 21:50:39 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/06/21 15:30:00 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static bool	overflow_check(char *str, int idx)
 	long	num;
 
 	i = 0;
+	if (str[0] == '+')
+		i++;
 	while (str[i] == '0')
 		i++;
 	if (ft_strlen(str + i) > 10)
