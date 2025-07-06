@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:32:45 by mkulbak           #+#    #+#             */
-/*   Updated: 2025/06/07 21:51:03 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/07/07 01:13:23 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ static bool	init_philo(
 			return (false);
 		if (pthread_mutex_init(philos[i].meal_mutex, NULL) != 0)
 			return (false);
+		pthread_mutex_lock(philos[i].meal_mutex);
+		philos[i].last_meal_time = get_current_time();
+		pthread_mutex_unlock(philos[i].meal_mutex);
 		i++;
 	}
 	return (true);

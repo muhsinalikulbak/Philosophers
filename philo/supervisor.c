@@ -6,7 +6,7 @@
 /*   By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 02:36:50 by muhsin            #+#    #+#             */
-/*   Updated: 2025/06/06 09:09:18 by muhsin           ###   ########.fr       */
+/*   Updated: 2025/07/07 01:12:19 by muhsin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static bool	check_meals(t_philo *philo)
 void	*supervisor_routine(void *arg)
 {
 	t_philo	*philo;
-
+	
 	philo = (t_philo *)(arg);
 	while (true)
 	{

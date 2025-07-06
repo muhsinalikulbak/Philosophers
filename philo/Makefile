@@ -6,14 +6,14 @@
 #    By: muhsin <muhsin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/08 01:36:07 by mkulbak           #+#    #+#              #
-#    Updated: 2025/06/11 19:47:20 by muhsin           ###   ########.fr        #
+#    Updated: 2025/07/07 01:15:06 by muhsin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -pthread 
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 SRCS = main.c argv_checker.c utils.c initializer.c free_resources.c error_manage.c simulation.c \
 	supervisor.c events.c libft_utils1.c libft_utils2.c
